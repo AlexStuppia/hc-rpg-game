@@ -8,6 +8,8 @@ import org.ht.rpg.game.action.Attack;
 import org.ht.rpg.game.action.Consumable;
 import org.ht.rpg.game.action.Magic;
 
+import java.util.Map;
+
 
 @NoArgsConstructor()
 @AllArgsConstructor()
@@ -23,8 +25,8 @@ public class Character {
     private int armorPoints;
     private int manaPoints;
     private Attack attack;
-    private Magic magic;
-    private Consumable consumable;
+    private Map<String,Boolean> magies;
+    private Map<String,Boolean> consumables;
 
 
 }
