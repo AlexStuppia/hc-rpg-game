@@ -10,7 +10,5 @@ public class Combat {
         System.out.println("la prova è" + parties.getAlleati() + "nemici sono" + parties.getNemici());
     }
 
-    public static void main(String[] args) {
 
-    }
 }

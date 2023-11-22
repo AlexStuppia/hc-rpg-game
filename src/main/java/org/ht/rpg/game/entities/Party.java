@@ -3,6 +3,7 @@ package org.ht.rpg.game.entities;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -11,6 +12,10 @@ public class Party {
 
     List<Ally> alleati;
     List<Enemy> nemici;
+
+
+
+
 
     public List<Enemy> getNemici() {
         return nemici;
