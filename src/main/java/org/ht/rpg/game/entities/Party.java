@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 
 public class Party {
+
    private List<Ally> allyList;
    private List<Enemy> enemyList;
 
