@@ -1,9 +1,7 @@
 package org.ht.rpg.game.entities;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.ht.rpg.game.action.Attack;
 import org.ht.rpg.game.action.Consumable;
 import org.ht.rpg.game.action.Magic;
@@ -11,9 +9,7 @@ import org.ht.rpg.game.action.Magic;
 
 @NoArgsConstructor()
 @AllArgsConstructor()
-@Getter
-@Setter
-public class Character {
+public abstract class Character {
 
     //definisce se il personaggio puo conseguire il turno o meno
     private boolean isTurnoOk;
@@ -26,5 +22,75 @@ public class Character {
     private Magic magic;
     private Consumable consumable;
 
+    public boolean isTurnoOk() {
+        return isTurnoOk;
+    }
 
+    public void setTurnoOk(boolean turnoOk) {
+        isTurnoOk = turnoOk;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getLifePoints() {
+        return lifePoints;
+    }
+
+    public void setLifePoints(int lifePoints) {
+        this.lifePoints = lifePoints;
+    }
+
+    public int getArmorPoints() {
+        return armorPoints;
+    }
+
+    public void setArmorPoints(int armorPoints) {
+        this.armorPoints = armorPoints;
+    }
+
+    public int getManaPoints() {
+        return manaPoints;
+    }
+
+    public void setManaPoints(int manaPoints) {
+        this.manaPoints = manaPoints;
+    }
+
+    public Attack getAttack() {
+        return attack;
+    }
+
+    public void setAttack(Attack attack) {
+        this.attack = attack;
+    }
+
+    public Magic getMagic() {
+        return magic;
+    }
+
+    public void setMagic(Magic magic) {
+        this.magic = magic;
+    }
+
+    public Consumable getConsumable() {
+        return consumable;
+    }
+
+    public void setConsumable(Consumable consumable) {
+        this.consumable = consumable;
+    }
 }
