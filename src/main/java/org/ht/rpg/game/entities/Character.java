@@ -1,14 +1,11 @@
 package org.ht.rpg.game.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.ht.rpg.game.action.Attack;
 import org.ht.rpg.game.action.Consumable;
 import org.ht.rpg.game.action.Magic;
 
 
-@NoArgsConstructor()
-@AllArgsConstructor()
+
 public abstract class Character {
 
     //definisce se il personaggio puo conseguire il turno o meno
@@ -21,6 +18,21 @@ public abstract class Character {
     private Attack attack;
     private Magic magic;
     private Consumable consumable;
+
+    public Character() {
+    }
+
+    public Character(boolean isTurnoOk, int exp, int level, int lifePoints, int armorPoints, int manaPoints, Attack attack, Magic magic, Consumable consumable) {
+        this.isTurnoOk = isTurnoOk;
+        this.exp = exp;
+        this.level = level;
+        this.lifePoints = lifePoints;
+        this.armorPoints = armorPoints;
+        this.manaPoints = manaPoints;
+        this.attack = attack;
+        this.magic = magic;
+        this.consumable = consumable;
+    }
 
     public boolean isTurnoOk() {
         return isTurnoOk;

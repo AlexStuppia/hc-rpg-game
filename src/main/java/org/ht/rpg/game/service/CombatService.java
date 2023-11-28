@@ -29,14 +29,4 @@ public class CombatService {
     ConsumableService consumableService;
 
 
-
-
-    public void fight(Party party, Story story) throws FileNotFoundException {
-           String text = storyService.getStoryText("src/main/resources/Json/JsonStory.json", "storia1");
-
-        System.out.println(text);
-
-    }
-
-
 }
