@@ -7,7 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Combat {
     //@Autowired
     public void prova(Party parties){
-        System.out.println("la prova è" + parties.getAlleati() + "nemici sono" + parties.getNemici());
+        for (int i = 0; i < parties.getNemici().size(); i++) {
+            int element = parties.getNemici().get(i).getExp();
+            System.out.println("IL NEMICO esperienza " + element);
+        }
+
+  //      for (int i = 0; i < parties.getAlleati().size(); i++) {
+  //          int element = parties.getAlleati().get(i).getExp();
+  //          System.out.println("IL alleartp  esperienza" + element);
+  //     }
     }
 
 
