@@ -9,8 +9,9 @@ import java.util.List;
 
 public class Story {
     public static void main(String[] args) {
-        Party party = PartyService.initParty();
-        prova(party);
-
+        PartyService partyService = new PartyService();
+        Party party = partyService.initParty();
+        Combat combat = new Combat();
+        combat.prova(party);
     }
 }
