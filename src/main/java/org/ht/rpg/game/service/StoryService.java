@@ -5,7 +5,7 @@ import org.ht.rpg.game.entities.Story;
 
 public class StoryService {
     public static void main(String[] args) {
-        String ambientazione = "inferno";
+        String ambientazione = "cattedrale";
         String tipoDiIncontro ="casuale";
         Story storia = new Story(ambientazione,tipoDiIncontro);
         PartyService partyService = new PartyService();
