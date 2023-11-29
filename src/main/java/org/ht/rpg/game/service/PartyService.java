@@ -1,37 +1,16 @@
 package org.ht.rpg.game.service;
 
-
-import org.ht.rpg.game.entities.Ally;
-import org.ht.rpg.game.entities.Enemy;
-import org.ht.rpg.game.entities.Party;
-import org.springframework.stereotype.Service;
+import org.ht.rpg.game.entities.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-@Service
 public class PartyService {
-    public Party initEntities() {
-        List<Ally> allyList = new ArrayList<>();
-        List<Enemy> enemyList = new ArrayList<>();
-        Party party = new Party();
-        Enemy enemy = new Enemy();
-        Ally ally = new Ally();
-
-        allyList.add(ally);
-        enemyList.add(enemy);
-
-        party.setAllyList(allyList);
-        party.setEnemyList(enemyList);
-
-
-        return party;
-    }
-
-    public List<Ally> createAllies(){
-        Ally alleato1 = new Ally();
-        Ally alleato2 = new Ally();
-        Ally alleato3 = new Ally();
+    public List<Ally> creaAlleati(){
+        Ally alleato1 = new Ally(120,1);
+        Ally alleato2 = new Ally(102,2);
+        Ally alleato3 = new Ally(103,3);
         List<Ally> alleati = new ArrayList<Ally>();
         alleati.add(alleato1);
         alleati.add(alleato2);
@@ -39,27 +18,58 @@ public class PartyService {
         return alleati;
     }
 
-    public List<Enemy> createEnemies(){
-        Enemy nemico1 = new Enemy();
-        Enemy nemico2 = new Enemy();
-        Enemy nemico3 = new Enemy();
+    public List<Enemy> creaNemici(String ambientazione){
 
         List<Enemy> nemici = new ArrayList<Enemy>();
-
-        nemici.add(nemico1);
-        nemici.add(nemico2);
-        nemici.add(nemico3);
+        int numero = generaNumeroCasuale(1,6);
+        for (int i = 0; i < numero; i++) {
+            Enemy enemy = new Enemy();
+            nemici.add(enemy);
+        }
+        switch (ambientazione)
+        {
+            case "cattedrale":
+            {
+                System.out.println("sei in cattedrale");
+                for (Fighter nemico : nemici) {
+                    nemico.setExp(generaNumeroCasuale(10,40));
+                }
+            }
+            break;
+            case "inferno":
+            {
+                System.out.println("sei in inferno");
+                for (Fighter nemico : nemici) {
+                    nemico.setExp(generaNumeroCasuale(150,200));
+                }
+            }
+            break;
+            default:
+            {
+                System.out.println("erroraccio non deve finire qui denbrotp ");
+                for (Fighter nemico : nemici) {
+                    nemico.setExp(generaNumeroCasuale(1,10));
+                }
+            }
+            break;
+        }
         return nemici;
     }
 
-    public Party initParty(){
-        List<Ally> alleati =  createAllies();
-        List<Enemy> nemici = createEnemies();
+    public Party initParty(Story storia){
+        List<Ally> alleati =  creaAlleati();
+        List<Enemy> nemici = creaNemici(storia.getAmbientazione());
         Party parties = new Party();
-        parties.setAllyList(alleati);
-        parties.setEnemyList(nemici);
+        parties.setAlleati(alleati);
+        parties.setNemici(nemici);
         return parties;
     }
 
+
+    // metodo che crea un numero casuale in base ad un minimo ed un massimo che gli diamo
+    private static int generaNumeroCasuale(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min + 1) + min;
+    }
 
 }
