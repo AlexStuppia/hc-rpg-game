@@ -15,9 +15,10 @@ import java.util.Map;
 @Setter
 public abstract class Fighter {
 
-    public int velocita;
+
     //definisce se il personaggio puo conseguire il turno o meno
     private int id;
+    public int velocita;
     private boolean isAlly;
     private boolean isTurnoOk;
     private int exp;
@@ -28,6 +29,4 @@ public abstract class Fighter {
     private Attack attack;
     private Map<String,Boolean> magies;
     private Map<String,Boolean> consumables;
-
-
 }
