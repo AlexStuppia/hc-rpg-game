@@ -18,6 +18,7 @@ public abstract class Fighter {
     public int velocita;
     //definisce se il personaggio puo conseguire il turno o meno
     private int id;
+    private boolean isAlly;
     private boolean isTurnoOk;
     private int exp;
     private int level;
