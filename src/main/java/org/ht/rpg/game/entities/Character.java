@@ -12,6 +12,7 @@ public abstract class Character {
     private boolean isTurnoOk;
     private int exp;
     private int level;
+    private int velocita;
     private int lifePoints;
     private int armorPoints;
     private int manaPoints;
@@ -22,11 +23,12 @@ public abstract class Character {
     public Character() {
     }
 
-    public Character(int id, boolean isTurnoOk, int exp, int level, int lifePoints, int armorPoints, int manaPoints, Attack attack, Magic magic, Consumable consumable) {
+    public Character(int id, boolean isTurnoOk, int exp, int level, int velocita, int lifePoints, int armorPoints, int manaPoints, Attack attack, Magic magic, Consumable consumable) {
         this.id = id;
         this.isTurnoOk = isTurnoOk;
         this.exp = exp;
         this.level = level;
+        this.velocita = velocita;
         this.lifePoints = lifePoints;
         this.armorPoints = armorPoints;
         this.manaPoints = manaPoints;
@@ -41,6 +43,14 @@ public abstract class Character {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getVelocita() {
+        return velocita;
+    }
+
+    public void setVelocita(int velocita) {
+        this.velocita = velocita;
     }
 
     public boolean isTurnoOk() {
