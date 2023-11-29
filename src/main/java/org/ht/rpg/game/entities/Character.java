@@ -5,7 +5,6 @@ import org.ht.rpg.game.action.Consumable;
 import org.ht.rpg.game.action.Magic;
 
 
-
 public abstract class Character {
 
     //definisce se il personaggio puo conseguire il turno o meno

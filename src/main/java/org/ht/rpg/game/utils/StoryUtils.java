@@ -1,32 +1,27 @@
 package org.ht.rpg.game.utils;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-
-import org.apache.tomcat.util.json.JSONParser;
-import org.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.ht.rpg.game.entities.Story;
 import org.springframework.stereotype.Component;
+
+import java.io.File;
+import java.io.IOException;
+
 
 @Component
 public class StoryUtils {
 
 
-    public static String readJson(String jsonStoryFilePath, String storyKey) throws FileNotFoundException {
-        JSONParser parser = new JSONParser(new FileReader(jsonStoryFilePath));
-        String value = "";
+    public static Story readJson(String filePath) throws IOException {
+        Story ret = new Story();
 
         try {
-            Object obj = parser.parse();
-
-            JSONObject jsonObject = (JSONObject) obj;
-            // Now you can access values by their key
-             value = (String) jsonObject.get(storyKey);
-
-            System.out.println(value);
+            ObjectMapper objectMapper = new ObjectMapper();
+            ret = objectMapper.readValue(new File(filePath), Story.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return value;
+        return ret;
     }
 }
 

@@ -1,4 +1,6 @@
-
 {
-  "storia1": "stampa storia 1"
+  "storyTitle": "Capitolo 1 - Cattedrale",
+  "storyText": "Benvenuti nella cattedrale........",
+  "environment": "cattedrale-1-fogne",
+  "encounterType": "main-story"
 }

@@ -1,15 +1,12 @@
 package org.ht.rpg.game.entities;
 
 
-import org.ht.rpg.game.entities.Ally;
-import org.ht.rpg.game.entities.Enemy;
-
 import java.util.List;
 
 public class Party {
 
-   private List<Ally> allyList;
-   private List<Enemy> enemyList;
+    private List<Ally> allyList;
+    private List<Enemy> enemyList;
 
 
     public Party() {

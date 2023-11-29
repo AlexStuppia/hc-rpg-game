@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 public class PartyService {
-    public Party initEntities(){
+    public Party initEntities() {
         List<Ally> allyList = new ArrayList<>();
         List<Enemy> enemyList = new ArrayList<>();
         Party party = new Party();
