@@ -58,10 +58,10 @@ public class PartyService {
 
     public Party initParty(Story storia){
         List<Ally> alleati =  creaAlleati();
-        List<Enemy> nemici = creaNemici(storia.getAmbientazione());
+        List<Enemy> nemici = creaNemici(storia.getEnvironment());
         Party parties = new Party();
-        parties.setAlleati(alleati);
-        parties.setNemici(nemici);
+        parties.setAllyList(alleati);
+        parties.setEnemyList(nemici);
         return parties;
     }
 

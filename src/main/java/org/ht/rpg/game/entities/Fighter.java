@@ -24,6 +24,11 @@ public abstract class Fighter {
     public Fighter() {
     }
 
+    public Fighter(int id, int velocita) {
+        this.id = id;
+        this.velocita = velocita;
+    }
+
     public Fighter(int id, boolean isTurnoOk, boolean isAlly, int exp, int level, int velocita, int lifePoints, int armorPoints, int manaPoints, Attack attack, Magic magic, Consumable consumable) {
         this.id = id;
         this.isTurnoOk = isTurnoOk;
