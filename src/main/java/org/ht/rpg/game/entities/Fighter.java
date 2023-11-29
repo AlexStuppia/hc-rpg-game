@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.ht.rpg.game.action.Attack;
-import org.ht.rpg.game.action.Consumable;
-import org.ht.rpg.game.action.Magic;
 
 import java.util.Map;
 
@@ -15,9 +13,11 @@ import java.util.Map;
 @AllArgsConstructor()
 @Getter
 @Setter
-public class Character {
+public abstract class Fighter {
 
+    public int velocita;
     //definisce se il personaggio puo conseguire il turno o meno
+    private int id;
     private boolean isTurnoOk;
     private int exp;
     private int level;

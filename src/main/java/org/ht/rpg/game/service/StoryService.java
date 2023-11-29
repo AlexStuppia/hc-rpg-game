@@ -10,7 +10,7 @@ public class StoryService {
         Story storia = new Story(ambientazione,tipoDiIncontro);
         PartyService partyService = new PartyService();
         Party party = partyService.initParty(storia);
-        Combat combat = new Combat();
-        combat.prova(party);
+        CombatService combatService = new CombatService();
+        combatService.combattimento(party);
     }
 }
