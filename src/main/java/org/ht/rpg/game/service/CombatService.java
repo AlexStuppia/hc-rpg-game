@@ -18,8 +18,8 @@ public class CombatService {
 
 
 
-        for (int i = 0; i < parties.getNemici().size(); i++) {
-            int element = parties.getNemici().get(i).getExp();
+        for (int i = 0; i < parties.getEnemyList().size(); i++) {
+            int element = parties.getEnemyList().get(i).getExp();
             System.out.println("IL NEMICO esperienza " + element);
         }
 
@@ -30,10 +30,10 @@ public class CombatService {
     }
 public Map<Integer, Integer> calculateVelocity(Party parties){
     Map<Integer, Integer> mappaVelocita = new HashMap<>();
-    for (Enemy nemico : parties.getNemici()) {
+    for (Enemy nemico : parties.getEnemyList()) {
         mappaVelocita.put(nemico.getId(), nemico.getVelocita());
     }
-    for (Ally alleato : parties.getAlleati()) {
+    for (Ally alleato : parties.getAllyList()) {
         mappaVelocita.put(alleato.getId(), alleato.getVelocita());
     }
 
