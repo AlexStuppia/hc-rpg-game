@@ -8,6 +8,7 @@ import org.ht.rpg.game.action.Magic;
 public abstract class Character {
 
     //definisce se il personaggio puo conseguire il turno o meno
+    private int id;
     private boolean isTurnoOk;
     private int exp;
     private int level;
@@ -21,7 +22,8 @@ public abstract class Character {
     public Character() {
     }
 
-    public Character(boolean isTurnoOk, int exp, int level, int lifePoints, int armorPoints, int manaPoints, Attack attack, Magic magic, Consumable consumable) {
+    public Character(int id, boolean isTurnoOk, int exp, int level, int lifePoints, int armorPoints, int manaPoints, Attack attack, Magic magic, Consumable consumable) {
+        this.id = id;
         this.isTurnoOk = isTurnoOk;
         this.exp = exp;
         this.level = level;
@@ -31,6 +33,14 @@ public abstract class Character {
         this.attack = attack;
         this.magic = magic;
         this.consumable = consumable;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public boolean isTurnoOk() {
