@@ -5,11 +5,12 @@ import org.ht.rpg.game.action.Consumable;
 import org.ht.rpg.game.action.Magic;
 
 
-public abstract class Character {
+public abstract class Fighter {
 
     //definisce se il personaggio puo conseguire il turno o meno
     private int id;
     private boolean isTurnoOk;
+    private boolean isAlly;
     private int exp;
     private int level;
     private int velocita;
@@ -20,12 +21,14 @@ public abstract class Character {
     private Magic magic;
     private Consumable consumable;
 
-    public Character() {
+    public Fighter() {
     }
 
-    public Character(int id, boolean isTurnoOk, int exp, int level, int velocita, int lifePoints, int armorPoints, int manaPoints, Attack attack, Magic magic, Consumable consumable) {
+
+    public Fighter(int id, boolean isTurnoOk, boolean isAlly, int exp, int level, int velocita, int lifePoints, int armorPoints, int manaPoints, Attack attack, Magic magic, Consumable consumable) {
         this.id = id;
         this.isTurnoOk = isTurnoOk;
+        this.isAlly = isAlly;
         this.exp = exp;
         this.level = level;
         this.velocita = velocita;
@@ -59,6 +62,14 @@ public abstract class Character {
 
     public void setTurnoOk(boolean turnoOk) {
         isTurnoOk = turnoOk;
+    }
+
+    public boolean isAlly() {
+        return isAlly;
+    }
+
+    public void setAlly(boolean ally) {
+        isAlly = ally;
     }
 
     public int getExp() {
