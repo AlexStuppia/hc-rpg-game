@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Random;
 
 public class PartyService {
+
+
+    // TODO move createAlly and createEnemy in allyservice e enemyService
     public List<Ally> creaAlleati(){
         Ally alleato1 = new Ally(120,1);
         Ally alleato2 = new Ally(102,2);

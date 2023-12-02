@@ -21,6 +21,18 @@ public abstract class Fighter {
     private Magic magic;
     private Consumable consumable;
 
+    private boolean isDead;
+
+    private boolean isPoisoned;
+
+    private boolean isImmunePoisoned;
+    private boolean isLit; //Burned
+    private boolean isImmuneLitting;
+    private boolean isCursed;
+    private boolean isImmuneCursing;
+    private boolean isScared;
+    private boolean isImmuneToScare;
+
     public Fighter() {
     }
 
