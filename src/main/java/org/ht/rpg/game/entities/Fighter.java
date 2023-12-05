@@ -4,6 +4,8 @@ import org.ht.rpg.game.action.Attack;
 import org.ht.rpg.game.action.Consumable;
 import org.ht.rpg.game.action.Magic;
 
+import java.util.Objects;
+
 
 public abstract class Fighter {
 
@@ -22,7 +24,6 @@ public abstract class Fighter {
     private Consumable consumable;
 
     private boolean isDead;
-
     private boolean isPoisoned;
 
     private boolean isImmunePoisoned;
@@ -150,5 +151,93 @@ public abstract class Fighter {
 
     public void setConsumable(Consumable consumable) {
         this.consumable = consumable;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
+    public boolean isPoisoned() {
+        return isPoisoned;
+    }
+
+    public void setPoisoned(boolean poisoned) {
+        isPoisoned = poisoned;
+    }
+
+    public boolean isImmunePoisoned() {
+        return isImmunePoisoned;
+    }
+
+    public void setImmunePoisoned(boolean immunePoisoned) {
+        isImmunePoisoned = immunePoisoned;
+    }
+
+    public boolean isLit() {
+        return isLit;
+    }
+
+    public void setLit(boolean lit) {
+        isLit = lit;
+    }
+
+    public boolean isImmuneLitting() {
+        return isImmuneLitting;
+    }
+
+    public void setImmuneLitting(boolean immuneLitting) {
+        isImmuneLitting = immuneLitting;
+    }
+
+    public boolean isCursed() {
+        return isCursed;
+    }
+
+    public void setCursed(boolean cursed) {
+        isCursed = cursed;
+    }
+
+    public boolean isImmuneCursing() {
+        return isImmuneCursing;
+    }
+
+    public void setImmuneCursing(boolean immuneCursing) {
+        isImmuneCursing = immuneCursing;
+    }
+
+    public boolean isScared() {
+        return isScared;
+    }
+
+    public void setScared(boolean scared) {
+        isScared = scared;
+    }
+
+    public boolean isImmuneToScare() {
+        return isImmuneToScare;
+    }
+
+    public void setImmuneToScare(boolean immuneToScare) {
+        isImmuneToScare = immuneToScare;
+    }
+
+
+    // TODO CONTROLLARE SE QUESTI 2 METODI SIANO CORRETTI O MENO
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Fighter fighter = (Fighter) o;
+        return Objects.equals(id, fighter.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -4,10 +4,7 @@ import org.ht.rpg.game.entities.Ally;
 import org.ht.rpg.game.entities.Enemy;
 import org.ht.rpg.game.entities.Party;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CombatUtils {
     public Map<Integer, Integer> calculateVelocity(Party parties){
@@ -27,11 +24,27 @@ public class CombatUtils {
 
         return mappaOrdinata;
     }
-    public Boolean checkWinnerParty(Party parties){
 
 
-        return false;
+    public Tuple2<Boolean,Boolean> checkWinnerParty(Party parties){
+        Tuple2<Boolean,Boolean> isGameEndedIsPlayerWinner = new Tuple2<>(false,false);
+        Set<Ally> setAlly = new HashSet<>(parties.getAllyList());
+        Set<Enemy> setEnemy = new HashSet<>(parties.getEnemyList());
 
-
+        if(setAlly.stream().allMatch(Ally::isDead)) {
+            isGameEndedIsPlayerWinner.setFirst(true);
+            isGameEndedIsPlayerWinner.setSecond(false);
+            return isGameEndedIsPlayerWinner;
+        }
+        else if(setEnemy.stream().allMatch(Enemy::isDead)) {
+            isGameEndedIsPlayerWinner.setFirst(true);
+            isGameEndedIsPlayerWinner.setSecond(true);
+            return isGameEndedIsPlayerWinner;
+        }
+        else {
+            isGameEndedIsPlayerWinner.setFirst(false);
+            isGameEndedIsPlayerWinner.setSecond(false);
+            return isGameEndedIsPlayerWinner;
+        }
     }
 }

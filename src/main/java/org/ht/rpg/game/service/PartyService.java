@@ -22,7 +22,7 @@ public class PartyService {
     }
 
     public List<Enemy> creaNemici(String ambientazione){
-
+        int provaid = 1;
         List<Enemy> nemici = new ArrayList<Enemy>();
         int numero = generaNumeroCasuale(1,6);
         for (int i = 0; i < numero; i++) {
@@ -31,11 +31,14 @@ public class PartyService {
         }
         switch (ambientazione)
         {
-            case "cattedrale":
+            case "cathedral":
             {
                 System.out.println("sei in cattedrale");
                 for (Fighter nemico : nemici) {
+                    nemico.setId(provaid);
                     nemico.setExp(generaNumeroCasuale(10,40));
+                    nemico.setVelocita(generaNumeroCasuale(100,400));
+                    provaid++;
                 }
             }
             break;
