@@ -1,6 +1,7 @@
 package org.ht.rpg.game.service;
 
 import org.ht.rpg.game.entities.Party;
+import org.ht.rpg.game.utils.ChoicheUtils;
 import org.ht.rpg.game.utils.CombatUtils;
 import org.ht.rpg.game.utils.Tuple2;
 
@@ -21,6 +22,8 @@ public class CombatService {
             if (isGameEndedIsPlayerWinner.getFirst()==false)
             {
                 System.out.println("bloccato in the loop");
+                List<ChoicheUtils> choichesOfAll = new ArrayList<>();
+                choichesOfAll = combatUtils.makeAllPlayerChooseAction(parties);
                 Map<Integer, Integer> velocityOrder = combatUtils.calculateVelocity(parties);
 
             } else if (isGameEndedIsPlayerWinner.getFirst()==true && isGameEndedIsPlayerWinner.getSecond()==false) {
