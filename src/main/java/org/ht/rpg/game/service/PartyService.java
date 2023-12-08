@@ -15,7 +15,7 @@ public class PartyService {
         Party parties = new Party();
         parties.setAllyList(allyList);
         parties.setEnemyList(enemyList);
-        //Feature
+        //Feature22
         return parties;
     }
 
