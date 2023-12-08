@@ -24,7 +24,7 @@ public class CombatService {
                 System.out.println("bloccato in the loop");
                 List<ChoicheUtils> choichesOfAll = new ArrayList<>();
                 choichesOfAll = combatUtils.makeAllPlayerChooseAction(parties);
-                Map<Integer, Integer> velocityOrder = combatUtils.calculateVelocity(parties);
+                Map<Integer, Integer> velocityOrder = combatUtils.calculateVelocity(parties,choichesOfAll);
 
             } else if (isGameEndedIsPlayerWinner.getFirst()==true && isGameEndedIsPlayerWinner.getSecond()==false) {
                 //hai perso

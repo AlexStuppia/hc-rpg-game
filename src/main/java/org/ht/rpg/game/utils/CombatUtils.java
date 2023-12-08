@@ -8,7 +8,7 @@ import org.ht.rpg.game.entities.Party;
 import java.util.*;
 
 public class CombatUtils {
-    public Map<Integer, Integer> calculateVelocity(Party parties) {
+    public Map<Integer, Integer> calculateVelocity(Party parties, List<ChoicheUtils> fighterActions) {
         Map<Integer, Integer> mappaVelocita = new HashMap<>();
         for (Enemy nemico : parties.getEnemyList()) {
             mappaVelocita.put(nemico.getId(), nemico.getVelocity());
@@ -22,6 +22,16 @@ public class CombatUtils {
         mappaVelocita.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .forEachOrdered(entry -> mappaOrdinata.put(entry.getKey(), entry.getValue()));
+
+        for (ChoicheUtils choice: fighterActions) {
+            if (choice.isActionPriority()){
+
+            }
+            else if (choice.isActionInversePriority())
+            {
+
+            }
+        }
 
         return mappaOrdinata;
     }
