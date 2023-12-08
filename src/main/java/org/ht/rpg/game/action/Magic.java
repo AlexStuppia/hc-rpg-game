@@ -5,6 +5,8 @@ public class Magic {
     String name;
     String effect;
     int quantity;
+    Boolean isPriority;
+    Boolean isPriorityLast;
 
     public Magic() {
     }
@@ -46,5 +48,12 @@ public class Magic {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+    public Boolean getPriorityLast() {
+        return isPriorityLast;
+    }
+
+    public void setPriorityLast(Boolean priorityLast) {
+        isPriorityLast = priorityLast;
     }
 }

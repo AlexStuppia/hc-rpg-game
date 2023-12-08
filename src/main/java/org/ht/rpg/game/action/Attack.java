@@ -5,6 +5,8 @@ public class Attack {
     String name;
     String effect;
     int quantity;
+    Boolean isPriority;
+    Boolean isPriorityLast;
 
     public Attack() {
     }
@@ -48,4 +50,19 @@ public class Attack {
         this.quantity = quantity;
     }
 
+    public Boolean getPriority() {
+        return isPriority;
+    }
+
+    public void setPriority(Boolean priority) {
+        isPriority = priority;
+    }
+
+    public Boolean getPriorityLast() {
+        return isPriorityLast;
+    }
+
+    public void setPriorityLast(Boolean priorityLast) {
+        isPriorityLast = priorityLast;
+    }
 }

@@ -11,10 +11,10 @@ public class CombatUtils {
     public Map<Integer, Integer> calculateVelocity(Party parties) {
         Map<Integer, Integer> mappaVelocita = new HashMap<>();
         for (Enemy nemico : parties.getEnemyList()) {
-            mappaVelocita.put(nemico.getId(), nemico.getVelocita());
+            mappaVelocita.put(nemico.getId(), nemico.getVelocity());
         }
         for (Ally alleato : parties.getAllyList()) {
-            mappaVelocita.put(alleato.getId(), alleato.getVelocita());
+            mappaVelocita.put(alleato.getId(), alleato.getVelocity());
         }
 
         // Ordinare la mappa in base alla velocità in ordine decrescente
@@ -53,8 +53,8 @@ public class CombatUtils {
         for (Fighter member : parties.getAllyList()) {
 
             System.out.println("che cosa vuoi fare ?");
-            System.out.println("1 attacchi : " + member.getAttack());
-            System.out.println("2 magie : " + member.getMagic());
+            System.out.println("1 attacchi : " + member.getAttacks());
+            System.out.println("2 magie : " + member.getMagics());
             System.out.println("3 consumabili : " + member.getConsumable());
             System.out.println("4 fuga");
 

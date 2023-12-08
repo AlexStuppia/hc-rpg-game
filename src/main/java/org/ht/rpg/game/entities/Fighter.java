@@ -4,6 +4,7 @@ import org.ht.rpg.game.action.Attack;
 import org.ht.rpg.game.action.Consumable;
 import org.ht.rpg.game.action.Magic;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -15,12 +16,12 @@ public abstract class Fighter {
     private boolean isAlly;
     private int exp;
     private int level;
-    private int velocita;
+    private int velocity;
     private int lifePoints;
     private int armorPoints;
     private int manaPoints;
-    private Attack attack;
-    private Magic magic;
+    private List<Attack> attacks;
+    private List<Magic> magics;
     private Consumable consumable;
 
     private boolean isDead;
@@ -37,23 +38,23 @@ public abstract class Fighter {
     public Fighter() {
     }
 
-    public Fighter(int id, int velocita) {
+    public Fighter(int id, int velocity) {
         this.id = id;
-        this.velocita = velocita;
+        this.velocity = velocity;
     }
 
-    public Fighter(int id, boolean isTurnoOk, boolean isAlly, int exp, int level, int velocita, int lifePoints, int armorPoints, int manaPoints, Attack attack, Magic magic, Consumable consumable) {
+    public Fighter(int id, boolean isTurnoOk, boolean isAlly, int exp, int level, int velocity, int lifePoints, int armorPoints, int manaPoints, List<Attack> attacks, List<Magic> magics, Consumable consumable) {
         this.id = id;
         this.isTurnoOk = isTurnoOk;
         this.isAlly = isAlly;
         this.exp = exp;
         this.level = level;
-        this.velocita = velocita;
+        this.velocity = velocity;
         this.lifePoints = lifePoints;
         this.armorPoints = armorPoints;
         this.manaPoints = manaPoints;
-        this.attack = attack;
-        this.magic = magic;
+        this.attacks = attacks;
+        this.magics = magics;
         this.consumable = consumable;
     }
 
@@ -65,12 +66,12 @@ public abstract class Fighter {
         this.id = id;
     }
 
-    public int getVelocita() {
-        return velocita;
+    public int getVelocity() {
+        return velocity;
     }
 
-    public void setVelocita(int velocita) {
-        this.velocita = velocita;
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
     }
 
     public boolean isTurnoOk() {
@@ -129,20 +130,20 @@ public abstract class Fighter {
         this.manaPoints = manaPoints;
     }
 
-    public Attack getAttack() {
-        return attack;
+    public List<Attack> getAttacks() {
+        return attacks;
     }
 
-    public void setAttack(Attack attack) {
-        this.attack = attack;
+    public void setAttack(List<Attack> attacks) {
+        this.attacks = attacks;
     }
 
-    public Magic getMagic() {
-        return magic;
+    public List<Magic> getMagics() {
+        return magics;
     }
 
-    public void setMagic(Magic magic) {
-        this.magic = magic;
+    public void setMagic(List<Magic> magics) {
+        this.magics = magics;
     }
 
     public Consumable getConsumable() {
