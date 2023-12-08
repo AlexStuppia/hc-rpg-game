@@ -25,6 +25,7 @@ public class CombatService {
                 List<Choiche> choichesOfAll = new ArrayList<>();
                 choichesOfAll = combatUtils.makeAllPlayerChooseAction(parties);
                 Map<Integer, Integer> velocityOrder = combatUtils.calculateVelocity(parties,choichesOfAll);
+                combatUtils.makeActionsDO(velocityOrder,choichesOfAll);
 
             } else if (isGameEndedIsPlayerWinner.getFirst()==true && isGameEndedIsPlayerWinner.getSecond()==false) {
                 //hai perso
