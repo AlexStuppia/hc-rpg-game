@@ -1,14 +1,11 @@
 package org.ht.rpg.game.utils;
 
-import org.ht.rpg.game.entities.Ally;
-import org.ht.rpg.game.entities.Enemy;
-import org.ht.rpg.game.entities.Fighter;
-import org.ht.rpg.game.entities.Party;
+import org.ht.rpg.game.entities.*;
 
 import java.util.*;
 
 public class CombatUtils {
-    public Map<Integer, Integer> calculateVelocity(Party parties, List<ChoicheUtils> fighterActions) {
+    public Map<Integer, Integer> calculateVelocity(Party parties, List<Choiche> fighterActions) {
         Map<Integer, Integer> mappaVelocita = new HashMap<>();
         for (Enemy nemico : parties.getEnemyList()) {
             mappaVelocita.put(nemico.getId(), nemico.getVelocity());
@@ -23,7 +20,7 @@ public class CombatUtils {
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .forEachOrdered(entry -> mappaOrdinata.put(entry.getKey(), entry.getValue()));
 
-        for (ChoicheUtils choice: fighterActions) {
+        for (Choiche choice: fighterActions) {
             if (choice.isActionPriority()){
 
             }
@@ -57,9 +54,9 @@ public class CombatUtils {
         }
     }
 
-    public List<ChoicheUtils> makeAllPlayerChooseAction(Party parties) {
+    public List<Choiche> makeAllPlayerChooseAction(Party parties) {
         Scanner tastiera = new Scanner(System.in);
-        List<ChoicheUtils> scelte = null;
+        List<Choiche> scelte = null;
         for (Fighter member : parties.getAllyList()) {
 
             System.out.println("che cosa vuoi fare ?");
