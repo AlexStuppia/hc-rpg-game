@@ -27,15 +27,16 @@ public class AllyService {
         idOftheAttack.add(100);
         idOftheAttack.add(42);
         idOftheAttack.add(23);
+        idOftheAttack.add(24);
         attackList = AttackService.createAttaccks(idOftheAttack);
         List<Magic> prova = new ArrayList<>();
         Consumable cons = new Consumable();
         Ally ally1 = new Ally(1,true,true,20,1,
-                20,10,50,54,attackList,prova,cons);
+                20,10,50,54,attackList,prova,cons,"Abishek");
         Ally ally2 = new Ally(2,true,true,80,4,
-                200,50,500,300,attackList,prova,cons);
+                200,50,500,300,attackList,prova,cons,"Elyna");
         Ally ally3 = new Ally(3,true,true,40,2,
-                88,30,40,90,attackList,prova,cons);
+                88,30,40,90,attackList,prova,cons,"Davide");
         List<Ally> allies = new ArrayList<Ally>();
         allies.add(ally1);
         allies.add(ally2);

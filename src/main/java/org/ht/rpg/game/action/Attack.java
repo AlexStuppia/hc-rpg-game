@@ -5,6 +5,7 @@ public class Attack {
     String name;
     String effect;
     int quantity;
+    int damage;
     Boolean isPriority;
     Boolean isPriorityLast;
 
@@ -17,11 +18,12 @@ public class Attack {
     Boolean isHittingAllPlayer;
     public Attack() {
     }
-    public Attack(int id, String name, String effect, int quantity, Boolean isPriority, Boolean isPriorityLast, Boolean canTargetAlly, Boolean canAttackMultiTarget, Integer numberOfTarget, Boolean isHittingAllEnemy, Boolean isHittingAllAlly, Boolean isHittingAllPlayer) {
+    public Attack(int id, String name, String effect, int quantity,int damage, Boolean isPriority, Boolean isPriorityLast, Boolean canTargetAlly, Boolean canAttackMultiTarget, Integer numberOfTarget, Boolean isHittingAllEnemy, Boolean isHittingAllAlly, Boolean isHittingAllPlayer) {
         this.id = id;
         this.name = name;
         this.effect = effect;
         this.quantity = quantity;
+        this.damage = damage;
         this.isPriority = isPriority;
         this.isPriorityLast = isPriorityLast;
         this.canTargetAlly = canTargetAlly;
@@ -62,6 +64,14 @@ public class Attack {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
     public Boolean getPriority() {
