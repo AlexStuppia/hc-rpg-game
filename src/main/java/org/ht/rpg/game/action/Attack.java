@@ -8,14 +8,28 @@ public class Attack {
     Boolean isPriority;
     Boolean isPriorityLast;
 
+    Boolean canTargetAlly;
+    Boolean canAttackMultiTarget;
+
+    Integer numberOfTarget;
+    Boolean isHittingAllEnemy;
+    Boolean isHittingAllAlly;
+    Boolean isHittingAllPlayer;
     public Attack() {
     }
-
-    public Attack(int id, String name, String effect, int quantity) {
+    public Attack(int id, String name, String effect, int quantity, Boolean isPriority, Boolean isPriorityLast, Boolean canTargetAlly, Boolean canAttackMultiTarget, Integer numberOfTarget, Boolean isHittingAllEnemy, Boolean isHittingAllAlly, Boolean isHittingAllPlayer) {
         this.id = id;
         this.name = name;
         this.effect = effect;
         this.quantity = quantity;
+        this.isPriority = isPriority;
+        this.isPriorityLast = isPriorityLast;
+        this.canTargetAlly = canTargetAlly;
+        this.canAttackMultiTarget = canAttackMultiTarget;
+        this.numberOfTarget = numberOfTarget;
+        this.isHittingAllEnemy = isHittingAllEnemy;
+        this.isHittingAllAlly = isHittingAllAlly;
+        this.isHittingAllPlayer = isHittingAllPlayer;
     }
 
     public int getId() {
@@ -65,4 +79,52 @@ public class Attack {
     public void setPriorityLast(Boolean priorityLast) {
         isPriorityLast = priorityLast;
     }
+
+    public Boolean getCanTargetAlly() {
+        return canTargetAlly;
+    }
+
+    public void setCanTargetAlly(Boolean canTargetAlly) {
+        this.canTargetAlly = canTargetAlly;
+    }
+
+    public Boolean getCanAttackMultiTarget() {
+        return canAttackMultiTarget;
+    }
+
+    public void setCanAttackMultiTarget(Boolean canAttackMultiTarget) {
+        this.canAttackMultiTarget = canAttackMultiTarget;
+    }
+
+    public Integer getNumberOfTarget() {
+        return numberOfTarget;
+    }
+
+    public void setNumberOfTarget(Integer numberOfTarget) {
+        this.numberOfTarget = numberOfTarget;
+    }
+    public Boolean getHittingAllEnemy() {
+        return isHittingAllEnemy;
+    }
+
+    public void setHittingAllEnemy(Boolean hittingAllEnemy) {
+        isHittingAllEnemy = hittingAllEnemy;
+    }
+
+    public Boolean getHittingAllAlly() {
+        return isHittingAllAlly;
+    }
+
+    public void setHittingAllAlly(Boolean hittingAllAlly) {
+        isHittingAllAlly = hittingAllAlly;
+    }
+
+    public Boolean getHittingAllPlayer() {
+        return isHittingAllPlayer;
+    }
+
+    public void setHittingAllPlayer(Boolean hittingAllPlayer) {
+        isHittingAllPlayer = hittingAllPlayer;
+    }
 }
+

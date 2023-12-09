@@ -24,9 +24,9 @@ public class AllyService {
         // for each per il quale ogni personaggio viene riempito dai dati di attacco e magie
         //List<Integer> idOfthe Attack = queryFromtheDB(IDPersonaggio);
         List<Integer> idOftheAttack = new ArrayList<>();
-        idOftheAttack.add(1);
-        idOftheAttack.add(2);
-        idOftheAttack.add(3);
+        idOftheAttack.add(100);
+        idOftheAttack.add(42);
+        idOftheAttack.add(23);
         attackList = AttackService.createAttaccks(idOftheAttack);
         List<Magic> prova = new ArrayList<>();
         Consumable cons = new Consumable();

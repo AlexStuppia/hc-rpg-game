@@ -21,7 +21,6 @@ public class CombatService {
             isGameEndedIsPlayerWinner = combatUtils.checkWinnerParty(parties);
             if (isGameEndedIsPlayerWinner.getFirst()==false)
             {
-                System.out.println("bloccato in the loop");
                 List<Choiche> choichesOfAll = new ArrayList<>();
                 choichesOfAll = combatUtils.makeAllPlayerChooseAction(parties);
                 Map<Integer, Integer> velocityOrder = combatUtils.calculateVelocity(parties,choichesOfAll);
