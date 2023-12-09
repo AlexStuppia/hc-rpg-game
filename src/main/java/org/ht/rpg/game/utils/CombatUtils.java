@@ -210,22 +210,55 @@ public class CombatUtils {
         return orderedMap;
     }
 
-    public void makeActionsDO(Map<Integer, Integer> velocityOrder, List<Choiche> choichesOfAll) {
+    public Party makeCicleForActions(Party partiesAfterThisTurn, Map<Integer, Integer> velocityOrder, List<Choiche> choichesOfAll) {
+// con la Lambda sta causanda problemi, lambda rimossa
+//        AtomicInteger order = new AtomicInteger(0);
+//        Party partyAfterThisAction = new Party();
 //        velocityOrder.entrySet().forEach(entry -> {
-//            int temporaryid = entry.getKey();
-//            choichesOfAll.get().getIdSender()
+//            for (Choiche singleChoiche : choichesOfAll) {
+//                if (entry.getKey() == singleChoiche.getIdSender() && order.get() == 0) {
+//                    partyAfterThisAction  = makeSingleAction(partiesAfterThisTurn, singleChoiche);
+//                } else if (entry.getKey() == singleChoiche.getIdSender() && order.get() != 0) {
+//                    partyAfterThisAction = makeSingleAction(partyAfterThisAction, singleChoiche);
+//                }
+//            }
 //        });
-
-
-        // forse conviene che choiche invece di avere degli id e basta, riceva in pasto
-        // proprio gli interi oggetti
-
-        for (Choiche choice : choichesOfAll) {
-            System.out.println("il pg con id " + choice.getIdSender() + " con la mossa " + choice.getIdAction() + " attachera " +
-                    "" + choice.getListOfTargets());
+        int order = 0; // Assumo che questa variabile sia utilizzata in qualche altro modo nel tuo codice
+        Party partyAfterThisAction = partiesAfterThisTurn;
+        for (Map.Entry<Integer, Integer> entry : velocityOrder.entrySet()) {
+            for (Choiche singleChoiche : choichesOfAll) {
+                if (entry.getKey().equals(singleChoiche.getIdSender())) {
+                    if (order == 0) {
+                        partyAfterThisAction = makeSingleAction(partiesAfterThisTurn, singleChoiche);
+                        order++;
+                    } else {
+                        partyAfterThisAction = makeSingleAction(partyAfterThisAction, singleChoiche);
+                        order++;
+                    }
+                }
+            }
         }
-        System.out.println("");
         System.out.println("porcodiooooo");
+        return partiesAfterThisTurn;
+    }
+
+    private Party makeSingleAction(Party party, Choiche singleChoiche) {
+        List<Ally> allyList = party.getAllyList();
+        for (Ally ally : allyList)
+        {
+            if (ally.getId()==singleChoiche.getIdSender()){
+                for (Attack attack : ally.getAttacks())
+                {
+                    if(attack.getId() == singleChoiche.getIdAction())
+                    {
+                        System.out.println(attack.getName() + " used by " + ally.getName());
+                    }
+                }
+
+        }
+        }
+
+        return party;
     }
 }
 

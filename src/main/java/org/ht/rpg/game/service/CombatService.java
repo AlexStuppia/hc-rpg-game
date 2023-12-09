@@ -15,22 +15,23 @@ public class CombatService {
         //ossia quando uno dei 2 party è morto, il secondo booleano indica il party vincente
         //se è true ha vinto l'utente, se è falso, ha vinto il computer ed hai perso.
         Tuple2<Boolean,Boolean> isGameEndedIsPlayerWinner = new Tuple2<>(false,false);
-        int turni = 0;
+        int turns = 0;
         CombatUtils combatUtils = new CombatUtils();
+        Party partiesAfterThisTurn = parties;
         while(isGameEndedIsPlayerWinner.getFirst()==false){
             isGameEndedIsPlayerWinner = combatUtils.checkWinnerParty(parties);
             if (isGameEndedIsPlayerWinner.getFirst()==false)
             {
-                List<Choiche> choichesOfAll = new ArrayList<>();
-                choichesOfAll = combatUtils.makeAllPlayerChooseAction(parties);
-                Map<Integer, Integer> velocityOrder = combatUtils.calculateVelocity(parties,choichesOfAll);
-                combatUtils.makeActionsDO(velocityOrder,choichesOfAll);
-
+                List<Choiche> choicesOfAll = combatUtils.makeAllPlayerChooseAction(parties);
+                Map<Integer, Integer> velocityOrder = combatUtils.calculateVelocity(parties,choicesOfAll);
+                partiesAfterThisTurn = combatUtils.makeCicleForActions(partiesAfterThisTurn,velocityOrder,choicesOfAll);
             } else if (isGameEndedIsPlayerWinner.getFirst()==true && isGameEndedIsPlayerWinner.getSecond()==false) {
                 //hai perso
+                System.out.println("hai perso");
             }
             else if (isGameEndedIsPlayerWinner.getFirst()==true && isGameEndedIsPlayerWinner.getFirst()==true){
                 // hai vinto
+                System.out.println("hai vinto");
             }
         }
 
@@ -41,11 +42,6 @@ public class CombatService {
             int element = parties.getEnemyList().get(i).getExp();
             System.out.println("IL NEMICO esperienza " + element);
         }
-
-        //      for (int i = 0; i < parties.getAlleati().size(); i++) {
-        //          int element = parties.getAlleati().get(i).getExp();
-        //          System.out.println("IL alleartp  esperienza" + element);
-        //     }
     }
 }
 
