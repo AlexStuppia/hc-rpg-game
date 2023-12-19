@@ -1,6 +1,8 @@
 package org.ht.rpg.game.action;
 
-public class Attack extends Action{
+public abstract class Action {
+
+
     int id;
     String name;
     String effect;
@@ -16,9 +18,11 @@ public class Attack extends Action{
     Boolean isHittingAllEnemy;
     Boolean isHittingAllAlly;
     Boolean isHittingAllPlayer;
-    public Attack() {
+
+    public Action() {
     }
-    public Attack(int id, String name, String effect, int quantity,int damage, Boolean isPriority, Boolean isPriorityLast, Boolean canTargetAlly, Boolean canAttackMultiTarget, Integer numberOfTarget, Boolean isHittingAllEnemy, Boolean isHittingAllAlly, Boolean isHittingAllPlayer) {
+
+    public Action(int id, String name, String effect, int quantity, int damage, Boolean isPriority, Boolean isPriorityLast, Boolean canTargetAlly, Boolean canAttackMultiTarget, Integer numberOfTarget, Boolean isHittingAllEnemy, Boolean isHittingAllAlly, Boolean isHittingAllPlayer) {
         this.id = id;
         this.name = name;
         this.effect = effect;
@@ -113,6 +117,7 @@ public class Attack extends Action{
     public void setNumberOfTarget(Integer numberOfTarget) {
         this.numberOfTarget = numberOfTarget;
     }
+
     public Boolean getHittingAllEnemy() {
         return isHittingAllEnemy;
     }
@@ -135,6 +140,6 @@ public class Attack extends Action{
 
     public void setHittingAllPlayer(Boolean hittingAllPlayer) {
         isHittingAllPlayer = hittingAllPlayer;
+
     }
 }
-

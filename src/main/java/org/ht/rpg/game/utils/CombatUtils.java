@@ -1,5 +1,6 @@
 package org.ht.rpg.game.utils;
 
+import org.ht.rpg.game.action.Action;
 import org.ht.rpg.game.action.Attack;
 import org.ht.rpg.game.entities.*;
 
@@ -47,7 +48,7 @@ public class CombatUtils {
             int userInput = Integer.parseInt(tastiera.nextLine());
             switch (userInput) {
                 case 1: {
-                    Attack chosenAttack = selectAttack(member);
+                    Action chosenAttack = selectAttack(member);
                     if (chosenAttack.getId() == 0) {
                         System.out.println("return to selection action");
                     } else {
@@ -55,7 +56,7 @@ public class CombatUtils {
                         if (listOfTarget.contains(0)) {
                             System.out.println("return to selection actions");
                         } else {
-                            Choiche singlechoiche = new Choiche(member.getId(), chosenAttack.getId(), listOfTarget,
+                            Choiche singlechoiche = new Choiche(member.getId(), chosenAttack, listOfTarget,
                                     chosenAttack.getPriority(), chosenAttack.getPriorityLast());
                             choichesOfAllAlly.add(singlechoiche);
                             i++;
@@ -78,15 +79,15 @@ public class CombatUtils {
     }
 
 
-    private Attack selectAttack(Fighter member) {
+    private Action selectAttack(Fighter member) {
         // if member is an ally, scelta nostra
         // if is an enemy fare altro metodo con IA
-        Attack chosenAttack = null;
-        Attack discardAttack = new Attack(0, "discard", "utility", 10, 10, true, true, true, true, 1, true, true, true);
+        Action chosenAttack = null;
+        Action discardAttack = new Attack(0, "discard", "utility", 10, 10, true, true, true, true, 1, true, true, true);
         System.out.println("Select an attack:");
         System.out.println("Select 0 to go back to action selection");
         int contatore = 1;
-        for (Attack attack : member.getAttacks()) {
+        for (Action attack : member.getAttacks()) {
             System.out.println(contatore + ": " + attack.getName() + attack.getEffect());
             contatore++;
         }
@@ -104,7 +105,7 @@ public class CombatUtils {
         return chosenAttack;
     }
 
-    private List<Integer> selectTargets(Party parties, Attack chosenAttack) {
+    private List<Integer> selectTargets(Party parties, Action chosenAttack) {
         List<Integer> targets = new ArrayList<>();
         System.out.println("Select a target:");
         if (chosenAttack.getHittingAllPlayer()) {
@@ -249,7 +250,7 @@ public class CombatUtils {
             if (ally.getId()==singleChoiche.getIdSender()){
                 for (Attack attack : ally.getAttacks())
                 {
-                    if(attack.getId() == singleChoiche.getIdAction())
+                    if(attack.getId() == singleChoiche.getAction().getId())
                     {
                         System.out.println(attack.getName() + " used by " + ally.getName());
                     }

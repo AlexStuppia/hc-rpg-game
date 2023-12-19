@@ -1,6 +1,6 @@
 package org.ht.rpg.game.action;
 
-public class Consumable {
+public class Consumable extends Action{
     int id;
     String name;
     String effect;

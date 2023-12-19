@@ -1,6 +1,6 @@
 package org.ht.rpg.game.action;
 
-public class Magic {
+public class Magic extends Action{
     int id;
     String name;
     String effect;

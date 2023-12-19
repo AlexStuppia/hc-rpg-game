@@ -1,11 +1,13 @@
 package org.ht.rpg.game.entities;
 
+import org.ht.rpg.game.action.Action;
+
 import java.util.List;
 
 public class Choiche {
 
     private int idSender;
-    private int idAction;
+    private Action action;
     private List<Integer> listOfTargets;
 
 
@@ -16,9 +18,9 @@ public class Choiche {
     public Choiche() {
     }
 
-    public Choiche(int idSender, int idAction, List<Integer> listOfTargets, boolean isActionPriority, boolean isInversedPriority) {
+    public Choiche(int idSender, Action action, List<Integer> listOfTargets, boolean isActionPriority, boolean isInversedPriority) {
         this.idSender = idSender;
-        this.idAction = idAction;
+        this.action = action;
         this.listOfTargets = listOfTargets;
         this.isActionPriority = isActionPriority;
         this.isActionInversePriority = isInversedPriority;
@@ -32,12 +34,12 @@ public class Choiche {
         this.idSender = idSender;
     }
 
-    public int getIdAction() {
-        return idAction;
+    public Action getAction() {
+        return action;
     }
 
-    public void setIdAction(int idAction) {
-        this.idAction = idAction;
+    public void setAction(Action action) {
+        this.action = action;
     }
 
     public List<Integer> getListOfTargets() {
