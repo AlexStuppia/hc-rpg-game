@@ -253,6 +253,7 @@ public class CombatUtils {
                     if(attack.getId() == singleChoiche.getAction().getId())
                     {
                         System.out.println(attack.getName() + " used by " + ally.getName());
+                        int i = 0;
                     }
                 }
 
