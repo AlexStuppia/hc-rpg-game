@@ -6,9 +6,9 @@ import java.util.List;
 
 public class Choiche {
 
-    private int idSender;
+    private Fighter sender;
     private Action action;
-    private List<Integer> listOfTargets;
+    private List<Fighter> listOfTargets;
 
 
     //per vedere se ha priorita o meno una determinata azione es fuga,attacco rapido
@@ -18,20 +18,20 @@ public class Choiche {
     public Choiche() {
     }
 
-    public Choiche(int idSender, Action action, List<Integer> listOfTargets, boolean isActionPriority, boolean isInversedPriority) {
-        this.idSender = idSender;
+    public Choiche(Fighter sender, Action action, List<Fighter> listOfTargets, boolean isActionPriority, boolean isInversedPriority) {
+        this.sender = sender;
         this.action = action;
         this.listOfTargets = listOfTargets;
         this.isActionPriority = isActionPriority;
         this.isActionInversePriority = isInversedPriority;
     }
 
-    public int getIdSender() {
-        return idSender;
+    public Fighter getSender() {
+        return sender;
     }
 
-    public void setIdSender(int idSender) {
-        this.idSender = idSender;
+    public void setSender(Fighter sender) {
+        this.sender = sender;
     }
 
     public Action getAction() {
@@ -42,11 +42,11 @@ public class Choiche {
         this.action = action;
     }
 
-    public List<Integer> getListOfTargets() {
+    public List<Fighter> getListOfTargets() {
         return listOfTargets;
     }
 
-    public void setListOfTargets(List<Integer> listOfTargets) {
+    public void setListOfTargets(List<Fighter> listOfTargets) {
         this.listOfTargets = listOfTargets;
     }
 

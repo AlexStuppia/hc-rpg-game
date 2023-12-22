@@ -13,8 +13,8 @@ public class Enemy extends Fighter {
     public Enemy() {
     }
 
-    public Enemy(int id, boolean isTurnOk, boolean isAlly, int exp, int level, int velocity, int lifePoints, int armorPoints, int manaPoints, List<Attack> attacks, List<Magic> magics, Consumable consumable, String type) {
-        super(id, isTurnOk, isAlly, exp, level, velocity, lifePoints, armorPoints, manaPoints, attacks, magics, consumable);
+    public Enemy(int id, boolean isTurnOk, boolean isAlly, int exp, int level, int velocity, int lifePoints, int armorPoints,String name, int manaPoints, List<Attack> attacks, List<Magic> magics, Consumable consumable, String type) {
+        super(id, isTurnOk, isAlly, exp, level, velocity, lifePoints, armorPoints, manaPoints, name,attacks, magics, consumable);
         this.type = type;
     }
     public String getType() {

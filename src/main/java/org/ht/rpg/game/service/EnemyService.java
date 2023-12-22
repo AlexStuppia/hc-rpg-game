@@ -28,6 +28,9 @@ public class EnemyService {
                 for (Fighter nemico : nemici) {
                     nemico.setId(provaid);
                     nemico.setExp(CasualitiesUtils.generaNumeroCasuale(10,40));
+                    // messo per fare in modo di fare funzionare il refactor della classe scelta
+                    // e consentire di vedere se nella lista target, vi è presente un nome euqivalente a return
+                    nemico.setName("prova");
                     nemico.setVelocity(CasualitiesUtils.generaNumeroCasuale(100,400));
                     provaid++;
                 }

@@ -32,11 +32,11 @@ public class AllyService {
         List<Magic> prova = new ArrayList<>();
         Consumable cons = new Consumable();
         Ally ally1 = new Ally(1,true,true,20,1,
-                20,10,50,54,attackList,prova,cons,"Abishek");
+                20,10,50,54,"Abishek",attackList,prova,cons);
         Ally ally2 = new Ally(2,true,true,80,4,
-                200,50,500,300,attackList,prova,cons,"Elyna");
+                200,50,500,300,"Elyna",attackList,prova,cons);
         Ally ally3 = new Ally(3,true,true,40,2,
-                88,30,40,90,attackList,prova,cons,"Davide");
+                88,30,40,90,"Davide",attackList,prova,cons);
         List<Ally> allies = new ArrayList<Ally>();
         allies.add(ally1);
         allies.add(ally2);

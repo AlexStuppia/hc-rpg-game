@@ -20,6 +20,8 @@ public abstract class Fighter {
     private int lifePoints;
     private int armorPoints;
     private int manaPoints;
+
+    private String name;
     private List<Attack> attacks;
     private List<Magic> magics;
     private Consumable consumable;
@@ -43,7 +45,7 @@ public abstract class Fighter {
         this.velocity = velocity;
     }
 
-    public Fighter(int id, boolean isTurnoOk, boolean isAlly, int exp, int level, int velocity, int lifePoints, int armorPoints, int manaPoints, List<Attack> attacks, List<Magic> magics, Consumable consumable) {
+    public Fighter(int id, boolean isTurnoOk, boolean isAlly, int exp, int level, int velocity, int lifePoints, int armorPoints, int manaPoints,String name, List<Attack> attacks, List<Magic> magics, Consumable consumable) {
         this.id = id;
         this.isTurnoOk = isTurnoOk;
         this.isAlly = isAlly;
@@ -53,6 +55,7 @@ public abstract class Fighter {
         this.lifePoints = lifePoints;
         this.armorPoints = armorPoints;
         this.manaPoints = manaPoints;
+        this.name = name;
         this.attacks = attacks;
         this.magics = magics;
         this.consumable = consumable;
@@ -128,6 +131,14 @@ public abstract class Fighter {
 
     public void setManaPoints(int manaPoints) {
         this.manaPoints = manaPoints;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Attack> getAttacks() {

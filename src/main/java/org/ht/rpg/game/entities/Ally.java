@@ -8,19 +8,7 @@ import java.util.List;
 
 
 public class Ally extends Fighter {
-    private String name;
-
-
-    public Ally(int id, boolean isTurnoOk, boolean isAlly, int exp, int level, int velocity, int lifePoints, int armorPoints, int manaPoints, List<Attack> attacks, List<Magic> magics, Consumable consumable, String name) {
-        super(id, isTurnoOk, isAlly, exp, level, velocity, lifePoints, armorPoints, manaPoints, attacks, magics, consumable);
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public Ally(int id, boolean isTurnoOk, boolean isAlly, int exp, int level, int velocity, int lifePoints, int armorPoints, int manaPoints,String name, List<Attack> attacks, List<Magic> magics, Consumable consumable) {
+        super(id, isTurnoOk, isAlly, exp, level, velocity, lifePoints, armorPoints, manaPoints,name, attacks, magics, consumable);
     }
 }

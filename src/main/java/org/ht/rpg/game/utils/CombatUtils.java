@@ -2,6 +2,8 @@ package org.ht.rpg.game.utils;
 
 import org.ht.rpg.game.action.Action;
 import org.ht.rpg.game.action.Attack;
+import org.ht.rpg.game.action.Consumable;
+import org.ht.rpg.game.action.Magic;
 import org.ht.rpg.game.entities.*;
 
 import java.util.*;
@@ -52,11 +54,12 @@ public class CombatUtils {
                     if (chosenAttack.getId() == 0) {
                         System.out.println("return to selection action");
                     } else {
-                        List<Integer> listOfTarget = selectTargets(parties, chosenAttack);
-                        if (listOfTarget.contains(0)) {
+                        List<Fighter> listOfTarget = selectTargets(parties, chosenAttack);
+                        if (listOfTarget.stream().anyMatch(fighter -> fighter.getName().equals("return") == true))
+                        {
                             System.out.println("return to selection actions");
                         } else {
-                            Choiche singlechoiche = new Choiche(member.getId(), chosenAttack, listOfTarget,
+                            Choiche singlechoiche = new Choiche(member, chosenAttack, listOfTarget,
                                     chosenAttack.getPriority(), chosenAttack.getPriorityLast());
                             choichesOfAllAlly.add(singlechoiche);
                             i++;
@@ -105,8 +108,12 @@ public class CombatUtils {
         return chosenAttack;
     }
 
-    private List<Integer> selectTargets(Party parties, Action chosenAttack) {
-        List<Integer> targets = new ArrayList<>();
+    private List<Fighter> selectTargets(Party parties, Action chosenAttack) {
+        List<Fighter> targets = new ArrayList<>();
+        List <Attack> attackListProva = new ArrayList<>();
+        List <Magic> magicListProva = new ArrayList<>();
+        Consumable consumable = new Consumable();
+        Fighter fighterForReturnInCaseOfWrongInput = new Ally(420,false,false,0,0,0,0,0,0,"return",attackListProva,magicListProva,consumable);
         System.out.println("Select a target:");
         if (chosenAttack.getHittingAllPlayer()) {
             System.out.println("this attack will target everyone on the field");
@@ -114,22 +121,22 @@ public class CombatUtils {
             Integer userInput = Integer.parseInt(tastiera.nextLine());
             if (userInput == 1) {
                 for (Ally ally : parties.getAllyList()) {
-                    targets.add(ally.getId());
+                    targets.add(ally);
                 }
                 for (Enemy enemy : parties.getEnemyList()) {
-                    targets.add(enemy.getId());
+                    targets.add(enemy);
                 }
             } else {
                 System.out.println("go back to selection");
-                targets.add(0);
+                targets.add(fighterForReturnInCaseOfWrongInput);
             }
         } else if (chosenAttack.getHittingAllAlly()) {
             for (Ally ally : parties.getAllyList()) {
-                targets.add(ally.getId());
+                targets.add(ally);
             }
         } else if (chosenAttack.getHittingAllEnemy()) {
             for (Enemy enemy : parties.getEnemyList()) {
-                targets.add(enemy.getId());
+                targets.add(enemy);
             }
         } else if (chosenAttack.getCanAttackMultiTarget()) {
             for (int i = 0; i < chosenAttack.getNumberOfTarget(); i++) {
@@ -142,10 +149,10 @@ public class CombatUtils {
                 }
                 Integer inputPlayer = Integer.parseInt(tastiera.nextLine());
                 if (inputPlayer > 0 && inputPlayer <= tempEnemyList.size()) {
-                    targets.add(tempEnemyList.get(inputPlayer - 1).getId());
+                    targets.add(tempEnemyList.get(inputPlayer - 1));
                 } else {
                     System.out.println("wrong input retry");
-                    targets.add(0);
+                    targets.add(fighterForReturnInCaseOfWrongInput);
                     break;
                 }
             }
@@ -158,10 +165,10 @@ public class CombatUtils {
             }
             Integer inputPlayer = Integer.parseInt(tastiera.nextLine());
             if (inputPlayer > 0 && inputPlayer <= tempEnemyList.size()) {
-                targets.add(tempEnemyList.get(inputPlayer - 1).getId());
+                targets.add(tempEnemyList.get(inputPlayer - 1));
             } else {
                 System.out.println("wrong input retry");
-                targets.add(0);
+                targets.add(fighterForReturnInCaseOfWrongInput);
             }
         }
         return targets;
@@ -194,17 +201,17 @@ public class CombatUtils {
 
         for (Choiche choice : fighterActions) {
             if (choice.isActionPriority()) {
-                if (orderedMap.containsKey(choice.getIdSender())) {
-                    Integer value = orderedMap.remove(choice.getIdSender());
+                if (orderedMap.containsKey(choice.getSender().getId())) {
+                    Integer value = orderedMap.remove(choice.getSender().getId());
                     LinkedHashMap<Integer, Integer> tempMap = new LinkedHashMap<>();
-                    tempMap.put(choice.getIdSender(), value);
+                    tempMap.put(choice.getSender().getId(), value);
                     tempMap.putAll(orderedMap);
                     orderedMap = tempMap;
                 }
             } else if (choice.isActionInversePriority()) {
-                if (orderedMap.containsKey(choice.getIdSender())) {
-                    Integer value = orderedMap.remove(choice.getIdSender());
-                    orderedMap.put(choice.getIdSender(), value); // Questo lo sposta alla fine
+                if (orderedMap.containsKey(choice.getSender().getId())) {
+                    Integer value = orderedMap.remove(choice.getSender().getId());
+                    orderedMap.put(choice.getSender().getId(), value); // Questo lo sposta alla fine
                 }
             }
         }
@@ -212,30 +219,11 @@ public class CombatUtils {
     }
 
     public Party makeCicleForActions(Party partiesAfterThisTurn, Map<Integer, Integer> velocityOrder, List<Choiche> choichesOfAll) {
-// con la Lambda sta causanda problemi, lambda rimossa
-//        AtomicInteger order = new AtomicInteger(0);
-//        Party partyAfterThisAction = new Party();
-//        velocityOrder.entrySet().forEach(entry -> {
-//            for (Choiche singleChoiche : choichesOfAll) {
-//                if (entry.getKey() == singleChoiche.getIdSender() && order.get() == 0) {
-//                    partyAfterThisAction  = makeSingleAction(partiesAfterThisTurn, singleChoiche);
-//                } else if (entry.getKey() == singleChoiche.getIdSender() && order.get() != 0) {
-//                    partyAfterThisAction = makeSingleAction(partyAfterThisAction, singleChoiche);
-//                }
-//            }
-//        });
-        int order = 0; // Assumo che questa variabile sia utilizzata in qualche altro modo nel tuo codice
         Party partyAfterThisAction = partiesAfterThisTurn;
         for (Map.Entry<Integer, Integer> entry : velocityOrder.entrySet()) {
             for (Choiche singleChoiche : choichesOfAll) {
-                if (entry.getKey().equals(singleChoiche.getIdSender())) {
-                    if (order == 0) {
-                        partyAfterThisAction = makeSingleAction(partiesAfterThisTurn, singleChoiche);
-                        order++;
-                    } else {
-                        partyAfterThisAction = makeSingleAction(partyAfterThisAction, singleChoiche);
-                        order++;
-                    }
+                if (entry.getKey().equals(singleChoiche.getSender().getId())) {
+                        partyAfterThisAction = useAction(partyAfterThisAction, singleChoiche);
                 }
             }
         }
@@ -243,11 +231,11 @@ public class CombatUtils {
         return partiesAfterThisTurn;
     }
 
-    private Party makeSingleAction(Party party, Choiche singleChoiche) {
+    private Party useAction(Party party, Choiche singleChoiche) {
         List<Ally> allyList = party.getAllyList();
         for (Ally ally : allyList)
         {
-            if (ally.getId()==singleChoiche.getIdSender()){
+            if (ally.getId()==singleChoiche.getSender().getId()){
                 for (Attack attack : ally.getAttacks())
                 {
                     if(attack.getId() == singleChoiche.getAction().getId())

@@ -1,5 +1,6 @@
 package org.ht.rpg.game.service;
 
+import org.ht.rpg.game.entities.Fighter;
 import org.ht.rpg.game.entities.Party;
 import org.ht.rpg.game.entities.Choiche;
 import org.ht.rpg.game.utils.CombatUtils;
