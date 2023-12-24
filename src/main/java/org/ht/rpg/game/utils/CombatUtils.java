@@ -5,6 +5,7 @@ import org.ht.rpg.game.action.Attack;
 import org.ht.rpg.game.action.Consumable;
 import org.ht.rpg.game.action.Magic;
 import org.ht.rpg.game.entities.*;
+import org.ht.rpg.game.service.ActionService;
 
 import java.util.*;
 import java.util.List;
@@ -220,35 +221,16 @@ public class CombatUtils {
 
     public Party makeCicleForActions(Party partiesAfterThisTurn, Map<Integer, Integer> velocityOrder, List<Choiche> choichesOfAll) {
         Party partyAfterThisAction = partiesAfterThisTurn;
+        ActionService actionService = new ActionService();
         for (Map.Entry<Integer, Integer> entry : velocityOrder.entrySet()) {
             for (Choiche singleChoiche : choichesOfAll) {
                 if (entry.getKey().equals(singleChoiche.getSender().getId())) {
-                        partyAfterThisAction = useAction(partyAfterThisAction, singleChoiche);
+                        partyAfterThisAction = actionService.useAction(partyAfterThisAction, singleChoiche);
                 }
             }
         }
         System.out.println("porcodiooooo");
         return partiesAfterThisTurn;
-    }
-
-    private Party useAction(Party party, Choiche singleChoiche) {
-        List<Ally> allyList = party.getAllyList();
-        for (Ally ally : allyList)
-        {
-            if (ally.getId()==singleChoiche.getSender().getId()){
-                for (Attack attack : ally.getAttacks())
-                {
-                    if(attack.getId() == singleChoiche.getAction().getId())
-                    {
-                        System.out.println(attack.getName() + " used by " + ally.getName());
-                        int i = 0;
-                    }
-                }
-
-        }
-        }
-
-        return party;
     }
 }
 
