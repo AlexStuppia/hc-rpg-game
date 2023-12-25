@@ -12,9 +12,13 @@ public class PartyService {
         EnemyService enemyService = new EnemyService();
         List<Ally> allyList =  allyService.createAllies();
         List<Enemy> enemyList = enemyService.createEnemy(story.getEnvironment());
+        List<Ally> deadAllyList = new ArrayList<>();
+        List<Enemy> deadEnemyList = new ArrayList<>();
         Party parties = new Party();
         parties.setAllyList(allyList);
         parties.setEnemyList(enemyList);
+        parties.setDeadAllyList(deadAllyList);
+        parties.setDeadEnemyList(deadEnemyList);
         //Feature22
         return parties;
     }

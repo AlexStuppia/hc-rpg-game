@@ -12,8 +12,8 @@ public class ActionService {
             // metodo controllo se pg è morto o meno dopo calcolo danni
         }
         else if(singleChoiche.getAction().getClass().getName().contains("Magic")) {
-            party = MagicService.useMagic(party, singleChoiche);
             System.out.println("magia");
+            party = MagicService.useMagic(party, singleChoiche);
             // metodo controllo se pg è morto o meno dopo calcolo danni
         }
         return party;

@@ -1,5 +1,7 @@
 package org.ht.rpg.game.action;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 public abstract class Action {
 
 
@@ -12,6 +14,9 @@ public abstract class Action {
     Boolean isPriorityLast;
 
     Boolean canTargetAlly;
+
+    Boolean canTargetDeadAlly;
+    Boolean canTargetDeadEnemy;
     Boolean canAttackMultiTarget;
 
     Integer numberOfTarget;
@@ -22,7 +27,7 @@ public abstract class Action {
     public Action() {
     }
 
-    public Action(int id, String name, String effect, int quantity, int damage, Boolean isPriority, Boolean isPriorityLast, Boolean canTargetAlly, Boolean canAttackMultiTarget, Integer numberOfTarget, Boolean isHittingAllEnemy, Boolean isHittingAllAlly, Boolean isHittingAllPlayer) {
+    public Action(int id, String name, String effect, int quantity, int damage, Boolean isPriority, Boolean isPriorityLast, Boolean canTargetAlly, Boolean canTargetDeadAlly, Boolean canTargetDeadEnemy, Boolean canAttackMultiTarget, Integer numberOfTarget, Boolean isHittingAllEnemy, Boolean isHittingAllAlly, Boolean isHittingAllPlayer) {
         this.id = id;
         this.name = name;
         this.effect = effect;
@@ -31,6 +36,8 @@ public abstract class Action {
         this.isPriority = isPriority;
         this.isPriorityLast = isPriorityLast;
         this.canTargetAlly = canTargetAlly;
+        this.canTargetDeadAlly = canTargetDeadAlly;
+        this.canTargetDeadEnemy = canTargetDeadEnemy;
         this.canAttackMultiTarget = canAttackMultiTarget;
         this.numberOfTarget = numberOfTarget;
         this.isHittingAllEnemy = isHittingAllEnemy;
@@ -100,6 +107,22 @@ public abstract class Action {
 
     public void setCanTargetAlly(Boolean canTargetAlly) {
         this.canTargetAlly = canTargetAlly;
+    }
+
+    public Boolean getCanTargetDeadAlly() {
+        return canTargetDeadAlly;
+    }
+
+    public void setCanTargetDeadAlly(Boolean canTargetDeadAlly) {
+        this.canTargetDeadAlly = canTargetDeadAlly;
+    }
+
+    public Boolean getCanTargetDeadEnemy() {
+        return canTargetDeadEnemy;
+    }
+
+    public void setCanTargetDeadEnemy(Boolean canTargetDeadEnemy) {
+        this.canTargetDeadEnemy = canTargetDeadEnemy;
     }
 
     public Boolean getCanAttackMultiTarget() {

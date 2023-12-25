@@ -8,6 +8,8 @@ public class Party {
     private List<Ally> allyList;
     private List<Enemy> enemyList;
 
+    private List<Ally> deadAllyList;
+    private List<Enemy> deadEnemyList;
 
     public Party() {
     }
@@ -26,5 +28,21 @@ public class Party {
 
     public void setEnemyList(List<Enemy> enemyList) {
         this.enemyList = enemyList;
+    }
+
+    public List<Ally> getDeadAllyList() {
+        return deadAllyList;
+    }
+
+    public void setDeadAllyList(List<Ally> deadAllyList) {
+        this.deadAllyList = deadAllyList;
+    }
+
+    public List<Enemy> getDeadEnemyList() {
+        return deadEnemyList;
+    }
+
+    public void setDeadEnemyList(List<Enemy> deadEnemyList) {
+        this.deadEnemyList = deadEnemyList;
     }
 }

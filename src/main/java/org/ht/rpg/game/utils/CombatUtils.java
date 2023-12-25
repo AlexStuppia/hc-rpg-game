@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 public class CombatUtils {
     Scanner tastiera = new Scanner(System.in);
-
     public Tuple2<Boolean, Boolean> checkWinnerParty(Party parties) {
         Tuple2<Boolean, Boolean> isGameEndedIsPlayerWinner = new Tuple2<>(false, false);
         Set<Ally> setAlly = new HashSet<>(parties.getAllyList());
@@ -40,6 +39,12 @@ public class CombatUtils {
         int i = 0;
         while (i < parties.getAllyList().size()) {
             Ally member = parties.getAllyList().get(i);
+            if (member.isDead() == true)
+            {
+                System.out.println(member.getName() + " è a terra e non puo fare nulla");
+                i++;
+                break;
+            }
             System.out.println("what you want to do " + member.getName() + " ?");
             System.out.println("1 attack enemy ");
             System.out.println("2 use a magic ");
@@ -105,7 +110,7 @@ public class CombatUtils {
         // if member is an ally, scelta nostra
         // if is an enemy fare altro metodo con IA
         Action chosenAttack = null;
-        Action discardAttack = new Attack(0, "discard", "utility", 10, 10, true, true, true, true, 1, true, true, true);
+        Action discardAttack = new Attack(0, "discard", "utility", 10, 10, true, true, true,true,true, true, 1, true, true, true);
         if (typeAttack == "attack") {
             System.out.println("Select an attack:");
             System.out.println("Select 0 to go back to action selection");
@@ -211,6 +216,27 @@ public class CombatUtils {
                 System.out.println("wrong input retry");
                 targets.add(fighterForReturnInCaseOfWrongInput);
             }
+        } else if (chosenAttack.getCanTargetDeadAlly() == true) {
+            int contatore = 1;
+            List<Ally> tempAllyList = parties.getDeadAllyList();
+            if (tempAllyList == null && tempAllyList.size() == 0)
+            {
+                System.out.println("nessun target disponibile");
+                targets.add(fighterForReturnInCaseOfWrongInput);
+            }
+            else {
+                for (Ally ally : tempAllyList) {
+                    System.out.println(contatore + ": " + ally.getName());
+                    contatore++;
+                }
+                Integer inputPlayer = Integer.parseInt(tastiera.nextLine());
+                if (inputPlayer > 0 && inputPlayer <= tempAllyList.size()) {
+                    targets.add(tempAllyList.get(inputPlayer - 1));
+                } else {
+                    System.out.println("wrong input retry");
+                    targets.add(fighterForReturnInCaseOfWrongInput);
+                }
+            }
         }
         return targets;
     }
@@ -264,13 +290,35 @@ public class CombatUtils {
         ActionService actionService = new ActionService();
         for (Map.Entry<Integer, Integer> entry : velocityOrder.entrySet()) {
             for (Choiche singleChoiche : choichesOfAll) {
-                if (entry.getKey().equals(singleChoiche.getSender().getId())) {
+                if (entry.getKey().equals(singleChoiche.getSender().getId()) && singleChoiche.getSender().isDead() == false) {
                         partyAfterThisAction = actionService.useAction(partyAfterThisAction, singleChoiche);
+                }
+                else if (entry.getKey().equals(singleChoiche.getSender().getId()) && singleChoiche.getSender().isDead() == false) {
+                    System.out.println(singleChoiche.getSender().getName() + " is dead and cant'use the action");
                 }
             }
         }
         System.out.println("porcodiooooo");
         return partyAfterThisAction;
+    }
+
+    public static Party checkPGdead(Party party, Fighter target) {
+        if (target.getLifePoints() > 0)
+        {
+            System.out.println("vita dopo attacco " + target.getLifePoints());
+        }
+        else {
+            if (target.isAlly() == false){
+                System.out.println("il nemico "+ target.getName() + " è morto");
+                target.setDead(true);
+                party.getDeadEnemyList().add((Enemy) target);
+            } else if (target.isAlly() == true) {
+                System.out.println("l'alleato" + target.getName() + " è morto ");
+                target.setDead(true);
+                party.getDeadAllyList().add((Ally) target);
+            }
+        }
+        return party;
     }
 }
 

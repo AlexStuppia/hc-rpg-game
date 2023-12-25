@@ -10,15 +10,17 @@ public class Attack extends Action{
     Boolean isPriorityLast;
 
     Boolean canTargetAlly;
-    Boolean canAttackMultiTarget;
 
+    Boolean canTargetDeadAlly;
+    Boolean canTargetDeadEnemy;
+    Boolean canAttackMultiTarget;
     Integer numberOfTarget;
     Boolean isHittingAllEnemy;
     Boolean isHittingAllAlly;
     Boolean isHittingAllPlayer;
     public Attack() {
     }
-    public Attack(int id, String name, String effect, int quantity,int damage, Boolean isPriority, Boolean isPriorityLast, Boolean canTargetAlly, Boolean canAttackMultiTarget, Integer numberOfTarget, Boolean isHittingAllEnemy, Boolean isHittingAllAlly, Boolean isHittingAllPlayer) {
+    public Attack(int id, String name, String effect, int quantity,int damage, Boolean isPriority, Boolean isPriorityLast, Boolean canTargetAlly, Boolean canTargetDeadAlly, Boolean canTargetDeadEnemy, Boolean canAttackMultiTarget, Integer numberOfTarget, Boolean isHittingAllEnemy, Boolean isHittingAllAlly, Boolean isHittingAllPlayer) {
         this.id = id;
         this.name = name;
         this.effect = effect;
@@ -27,6 +29,8 @@ public class Attack extends Action{
         this.isPriority = isPriority;
         this.isPriorityLast = isPriorityLast;
         this.canTargetAlly = canTargetAlly;
+        this.canTargetDeadAlly = canTargetDeadAlly;
+        this.canTargetDeadEnemy = canTargetDeadEnemy;
         this.canAttackMultiTarget = canAttackMultiTarget;
         this.numberOfTarget = numberOfTarget;
         this.isHittingAllEnemy = isHittingAllEnemy;

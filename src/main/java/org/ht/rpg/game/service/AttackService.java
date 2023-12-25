@@ -1,11 +1,10 @@
 package org.ht.rpg.game.service;
 
 import org.ht.rpg.game.action.Attack;
-import org.ht.rpg.game.entities.Choiche;
-import org.ht.rpg.game.entities.Enemy;
-import org.ht.rpg.game.entities.Fighter;
-import org.ht.rpg.game.entities.Party;
+import org.ht.rpg.game.entities.*;
+import org.ht.rpg.game.utils.CombatUtils;
 
+import javax.servlet.http.Part;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -41,7 +40,7 @@ public class AttackService {
                     attack.setId(11);
                     attack.setName("SlowAttack");
                     attack.setQuantity(20);
-                    attack.setDamage(40);
+                    attack.setDamage(30);
                     attack.setPriority(false);
                     attack.setPriorityLast(true);
                     attack.setEffect("you attack for the last, but you do a lot of damage");
@@ -58,7 +57,7 @@ public class AttackService {
                     attack.setId(12);
                     attack.setName("FastAttack");
                     attack.setQuantity(20);
-                    attack.setDamage(10);
+                    attack.setDamage(5);
                     attack.setPriority(true);
                     attack.setPriorityLast(false);
                     attack.setEffect("you attack for the first, but do a small amount of damage");
@@ -76,7 +75,7 @@ public class AttackService {
                     attack.setId(13);
                     attack.setName("shadowFinger");
                     attack.setQuantity(8);
-                    attack.setDamage(10);
+                    attack.setDamage(3);
                     attack.setPriority(true);
                     attack.setPriorityLast(false);
                     attack.setEffect("you attack for the first, two target but do a small amount of damage");
@@ -105,9 +104,10 @@ public class AttackService {
                         if (target.getId() == oldTarget.getId())
                         {
                             System.out.println("vita prima attacco " + singleChoiche.getAction().getName() + " " + target.getLifePoints());
-                            target.setLifePoints(target.getLifePoints() - (5 * singleChoiche.getSender().getLevel()));
-                            System.out.println("danno fatto = " + (5 * singleChoiche.getSender().getLevel()));
-                            System.out.println("vita dopo attacco " + target.getLifePoints());
+                            target.setLifePoints(target.getLifePoints() - (singleChoiche.getAction().getDamage() * singleChoiche.getSender().getLevel()));
+                            System.out.println("danno fatto = " + (singleChoiche.getAction().getDamage() * singleChoiche.getSender().getLevel()));
+                            party = CombatUtils.checkPGdead(party,target);
+                            break;
                         }
                     }
                 }
@@ -123,9 +123,9 @@ public class AttackService {
                         if (target.getId() == oldTarget.getId())
                         {
                             System.out.println("vita prima attacco " + singleChoiche.getAction().getName() + " " + target.getLifePoints());
-                            target.setLifePoints(target.getLifePoints() - (8 * singleChoiche.getSender().getLevel()));
-                            System.out.println("danno fatto = " + (8 * singleChoiche.getSender().getLevel()));
-                            System.out.println("vita dopo attacco " + target.getLifePoints());
+                            target.setLifePoints(target.getLifePoints() - (singleChoiche.getAction().getDamage() * singleChoiche.getSender().getLevel()));
+                            System.out.println("danno fatto = " + (singleChoiche.getAction().getDamage() * singleChoiche.getSender().getLevel()));
+                            party = CombatUtils.checkPGdead(party,target);
                             break;
                         }
                     }
@@ -142,9 +142,9 @@ public class AttackService {
                         if (target.getId() == oldTarget.getId())
                         {
                             System.out.println("vita prima attacco " + singleChoiche.getAction().getName() + " " + target.getLifePoints());
-                            target.setLifePoints(target.getLifePoints() - (3 * singleChoiche.getSender().getLevel()));
-                            System.out.println("danno fatto = " + (3 * singleChoiche.getSender().getLevel()));
-                            System.out.println("vita dopo attacco " + target.getLifePoints());
+                            target.setLifePoints(target.getLifePoints() - (singleChoiche.getAction().getDamage() * singleChoiche.getSender().getLevel()));
+                            System.out.println("danno fatto = " + (singleChoiche.getAction().getDamage() * singleChoiche.getSender().getLevel()));
+                            party = CombatUtils.checkPGdead(party,target);
                             break;
                         }
                     }
@@ -161,9 +161,9 @@ public class AttackService {
                         if (target.getId() == oldTarget.getId())
                         {
                             System.out.println("vita prima attacco " + singleChoiche.getAction().getName() + " " + target.getLifePoints());
-                            target.setLifePoints(target.getLifePoints() - (1 * singleChoiche.getSender().getLevel()));
-                            System.out.println("danno fatto = " + (1 * singleChoiche.getSender().getLevel()));
-                            System.out.println("vita dopo attacco " + target.getLifePoints());
+                            target.setLifePoints(target.getLifePoints() - (singleChoiche.getAction().getDamage() * singleChoiche.getSender().getLevel()));
+                            System.out.println("danno fatto = " + (singleChoiche.getAction().getDamage() * singleChoiche.getSender().getLevel()));
+                            party = CombatUtils.checkPGdead(party,target);
                         }
                     }
                 }
