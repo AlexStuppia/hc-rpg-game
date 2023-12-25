@@ -43,62 +43,61 @@ public class CombatUtils {
             {
                 System.out.println(member.getName() + " è a terra e non puo fare nulla");
                 i++;
-                break;
             }
-            System.out.println("what you want to do " + member.getName() + " ?");
-            System.out.println("1 attack enemy ");
-            System.out.println("2 use a magic ");
-            System.out.println("3 use a item  ");
-            System.out.println("4 run away");
-            if (i != 0) {
-                System.out.println("0 go back to the previous pg");
-            }
-            int userInput = Integer.parseInt(tastiera.nextLine());
-            switch (userInput) {
-                case 1: {
-                    Action chosenAttack = selectAttack(member,"attack");
-                    if (chosenAttack.getId() == 0) {
-                        System.out.println("return to selection action");
-                    } else {
-                        List<Fighter> listOfTarget = selectTargets(parties, chosenAttack);
-                        if (listOfTarget.stream().anyMatch(fighter -> fighter.getName().equals("return") == true))
-                        {
-                            System.out.println("return to selection actions");
-                        } else {
-                            Choiche singlechoiche = new Choiche(member, chosenAttack, listOfTarget,
-                                    chosenAttack.getPriority(), chosenAttack.getPriorityLast());
-                            choichesOfAllAlly.add(singlechoiche);
-                            i++;
-                        }
-                    }
-                    break;
+            else {
+                System.out.println("what you want to do " + member.getName() + " ?");
+                System.out.println("1 attack enemy ");
+                System.out.println("2 use a magic ");
+                System.out.println("3 use a item  ");
+                System.out.println("4 run away");
+                if (i != 0) {
+                    System.out.println("0 go back to the previous pg");
                 }
-                case 2: {
-                    Action chosenAttack = selectAttack(member,"magic");
-                    if (chosenAttack.getId() == 0) {
-                        System.out.println("return to selection action");
-                    } else {
-                        List<Fighter> listOfTarget = selectTargets(parties, chosenAttack);
-                        if (listOfTarget.stream().anyMatch(fighter -> fighter.getName().equals("return") == true))
-                        {
-                            System.out.println("return to selection actions");
+                int userInput = Integer.parseInt(tastiera.nextLine());
+                switch (userInput) {
+                    case 1: {
+                        Action chosenAttack = selectAttack(member, "attack");
+                        if (chosenAttack.getId() == 0) {
+                            System.out.println("return to selection action");
                         } else {
-                            Choiche singlechoiche = new Choiche(member, chosenAttack, listOfTarget,
-                                    chosenAttack.getPriority(), chosenAttack.getPriorityLast());
-                            choichesOfAllAlly.add(singlechoiche);
-                            i++;
+                            List<Fighter> listOfTarget = selectTargets(parties, chosenAttack);
+                            if (listOfTarget.stream().anyMatch(fighter -> fighter.getName().equals("return") == true)) {
+                                System.out.println("return to selection actions");
+                            } else {
+                                Choiche singlechoiche = new Choiche(member, chosenAttack, listOfTarget,
+                                        chosenAttack.getPriority(), chosenAttack.getPriorityLast());
+                                choichesOfAllAlly.add(singlechoiche);
+                                i++;
+                            }
                         }
+                        break;
                     }
-                    break;
-                }
-                case 0: {
-                    if (i == 0) {
-                        System.out.println("wrong input");
-                    } else {
-                        i--;
-                        choichesOfAllAlly.remove(i);
+                    case 2: {
+                        Action chosenAttack = selectAttack(member, "magic");
+                        if (chosenAttack.getId() == 0) {
+                            System.out.println("return to selection action");
+                        } else {
+                            List<Fighter> listOfTarget = selectTargets(parties, chosenAttack);
+                            if (listOfTarget.stream().anyMatch(fighter -> fighter.getName().equals("return") == true)) {
+                                System.out.println("return to selection actions");
+                            } else {
+                                Choiche singlechoiche = new Choiche(member, chosenAttack, listOfTarget,
+                                        chosenAttack.getPriority(), chosenAttack.getPriorityLast());
+                                choichesOfAllAlly.add(singlechoiche);
+                                i++;
+                            }
+                        }
+                        break;
                     }
-                    break;
+                    case 0: {
+                        if (i == 0) {
+                            System.out.println("wrong input");
+                        } else {
+                            i--;
+                            choichesOfAllAlly.remove(i);
+                        }
+                        break;
+                    }
                 }
             }
         }
