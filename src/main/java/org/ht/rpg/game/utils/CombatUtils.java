@@ -51,7 +51,25 @@ public class CombatUtils {
             int userInput = Integer.parseInt(tastiera.nextLine());
             switch (userInput) {
                 case 1: {
-                    Action chosenAttack = selectAttack(member);
+                    Action chosenAttack = selectAttack(member,"attack");
+                    if (chosenAttack.getId() == 0) {
+                        System.out.println("return to selection action");
+                    } else {
+                        List<Fighter> listOfTarget = selectTargets(parties, chosenAttack);
+                        if (listOfTarget.stream().anyMatch(fighter -> fighter.getName().equals("return") == true))
+                        {
+                            System.out.println("return to selection actions");
+                        } else {
+                            Choiche singlechoiche = new Choiche(member, chosenAttack, listOfTarget,
+                                    chosenAttack.getPriority(), chosenAttack.getPriorityLast());
+                            choichesOfAllAlly.add(singlechoiche);
+                            i++;
+                        }
+                    }
+                    break;
+                }
+                case 2: {
+                    Action chosenAttack = selectAttack(member,"magic");
                     if (chosenAttack.getId() == 0) {
                         System.out.println("return to selection action");
                     } else {
@@ -83,28 +101,50 @@ public class CombatUtils {
     }
 
 
-    private Action selectAttack(Fighter member) {
+    private Action selectAttack(Fighter member,String typeAttack) {
         // if member is an ally, scelta nostra
         // if is an enemy fare altro metodo con IA
         Action chosenAttack = null;
         Action discardAttack = new Attack(0, "discard", "utility", 10, 10, true, true, true, true, 1, true, true, true);
-        System.out.println("Select an attack:");
-        System.out.println("Select 0 to go back to action selection");
-        int contatore = 1;
-        for (Action attack : member.getAttacks()) {
-            System.out.println(contatore + ": " + attack.getName() + attack.getEffect());
-            contatore++;
+        if (typeAttack == "attack") {
+            System.out.println("Select an attack:");
+            System.out.println("Select 0 to go back to action selection");
+            int contatore = 1;
+            for (Action attack : member.getAttacks()) {
+                System.out.println(contatore + ": " + attack.getName() + attack.getEffect());
+                contatore++;
+            }
+            Integer inputPlayer = Integer.parseInt(tastiera.nextLine());
+            if (inputPlayer > 0 && inputPlayer <= member.getAttacks().size()) {
+                chosenAttack = member.getAttacks().get(inputPlayer - 1);
+            } else if (inputPlayer == 0) {
+                System.out.println("go back to action selection");
+                return discardAttack;
+            } else {
+                System.out.println("wrong input");
+                System.out.println("go back to action selection");
+                return discardAttack;
+            }
         }
-        Integer inputPlayer = Integer.parseInt(tastiera.nextLine());
-        if (inputPlayer > 0 && inputPlayer <= member.getAttacks().size()) {
-            chosenAttack = member.getAttacks().get(inputPlayer - 1);
-        } else if (inputPlayer == 0) {
-            System.out.println("go back to action selection");
-            return discardAttack;
-        } else {
-            System.out.println("wrong input");
-            System.out.println("go back to action selection");
-            return discardAttack;
+        else if (typeAttack == "magic"){
+            System.out.println("Select a magic:");
+            System.out.println("Select 0 to go back to action selection");
+            int contatore = 1;
+            for (Action magic : member.getMagics()) {
+                System.out.println(contatore + ": " + magic.getName() + magic.getEffect());
+                contatore++;
+            }
+            Integer inputPlayer = Integer.parseInt(tastiera.nextLine());
+            if (inputPlayer > 0 && inputPlayer <= member.getMagics().size()) {
+                chosenAttack = member.getMagics().get(inputPlayer - 1);
+            } else if (inputPlayer == 0) {
+                System.out.println("go back to action selection");
+                return discardAttack;
+            } else {
+                System.out.println("wrong input");
+                System.out.println("go back to action selection");
+                return discardAttack;
+            }
         }
         return chosenAttack;
     }
@@ -230,7 +270,7 @@ public class CombatUtils {
             }
         }
         System.out.println("porcodiooooo");
-        return partiesAfterThisTurn;
+        return partyAfterThisAction;
     }
 }
 

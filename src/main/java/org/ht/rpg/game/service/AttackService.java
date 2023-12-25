@@ -1,9 +1,14 @@
 package org.ht.rpg.game.service;
 
 import org.ht.rpg.game.action.Attack;
+import org.ht.rpg.game.entities.Choiche;
+import org.ht.rpg.game.entities.Enemy;
+import org.ht.rpg.game.entities.Fighter;
+import org.ht.rpg.game.entities.Party;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class AttackService {
 
@@ -15,8 +20,8 @@ public class AttackService {
         for (Integer id : idsOfTheAttack) {
             Attack attack = new Attack();
             switch (id) {
-                case (100): {
-                    attack.setId(100);
+                case (10): {
+                    attack.setId(10);
                     attack.setName("NormalAttack");
                     attack.setQuantity(20);
                     attack.setDamage(20);
@@ -32,8 +37,8 @@ public class AttackService {
                     attackList.add(attack);
                     break;
                 }
-                case (42): {
-                    attack.setId(42);
+                case (11): {
+                    attack.setId(11);
                     attack.setName("SlowAttack");
                     attack.setQuantity(20);
                     attack.setDamage(40);
@@ -49,8 +54,8 @@ public class AttackService {
                     attackList.add(attack);
                     break;
                 }
-                case (23): {
-                    attack.setId(23);
+                case (12): {
+                    attack.setId(12);
                     attack.setName("FastAttack");
                     attack.setQuantity(20);
                     attack.setDamage(10);
@@ -66,9 +71,9 @@ public class AttackService {
                     attackList.add(attack);
                     break;
                 }
-                case 24 :
+                case 13 :
                 {
-                    attack.setId(24);
+                    attack.setId(13);
                     attack.setName("shadowFinger");
                     attack.setQuantity(8);
                     attack.setDamage(10);
@@ -87,5 +92,84 @@ public class AttackService {
             }
         }
         return attackList;
+    }
+
+    public static Party useAttack(Party party, Choiche singleChoiche) {
+        switch (singleChoiche.getAction().getId()){
+            case 10 : {
+                //normal attack
+                for (Fighter target : singleChoiche.getListOfTargets())
+                {
+                    for (Fighter oldTarget : party.getEnemyList())
+                    {
+                        if (target.getId() == oldTarget.getId())
+                        {
+                            System.out.println("vita prima attacco " + singleChoiche.getAction().getName() + " " + target.getLifePoints());
+                            target.setLifePoints(target.getLifePoints() - (5 * singleChoiche.getSender().getLevel()));
+                            System.out.println("danno fatto = " + (5 * singleChoiche.getSender().getLevel()));
+                            System.out.println("vita dopo attacco " + target.getLifePoints());
+                        }
+                    }
+                }
+                break;
+            }
+            case 11 :
+            {
+                //slow attack
+                for (Fighter target : singleChoiche.getListOfTargets())
+                {
+                    for (Fighter oldTarget : party.getEnemyList())
+                    {
+                        if (target.getId() == oldTarget.getId())
+                        {
+                            System.out.println("vita prima attacco " + singleChoiche.getAction().getName() + " " + target.getLifePoints());
+                            target.setLifePoints(target.getLifePoints() - (8 * singleChoiche.getSender().getLevel()));
+                            System.out.println("danno fatto = " + (8 * singleChoiche.getSender().getLevel()));
+                            System.out.println("vita dopo attacco " + target.getLifePoints());
+                            break;
+                        }
+                    }
+                }
+                break;
+            }
+            case 12 :
+            {
+                //fast attack
+                for (Fighter target : singleChoiche.getListOfTargets())
+                {
+                    for (Fighter oldTarget : party.getEnemyList())
+                    {
+                        if (target.getId() == oldTarget.getId())
+                        {
+                            System.out.println("vita prima attacco " + singleChoiche.getAction().getName() + " " + target.getLifePoints());
+                            target.setLifePoints(target.getLifePoints() - (3 * singleChoiche.getSender().getLevel()));
+                            System.out.println("danno fatto = " + (3 * singleChoiche.getSender().getLevel()));
+                            System.out.println("vita dopo attacco " + target.getLifePoints());
+                            break;
+                        }
+                    }
+                }
+                break;
+            }
+            case 13 :
+            {
+                //colpo multiplo
+                for (Fighter target : singleChoiche.getListOfTargets())
+                {
+                    for (Fighter oldTarget : party.getEnemyList())
+                    {
+                        if (target.getId() == oldTarget.getId())
+                        {
+                            System.out.println("vita prima attacco " + singleChoiche.getAction().getName() + " " + target.getLifePoints());
+                            target.setLifePoints(target.getLifePoints() - (1 * singleChoiche.getSender().getLevel()));
+                            System.out.println("danno fatto = " + (1 * singleChoiche.getSender().getLevel()));
+                            System.out.println("vita dopo attacco " + target.getLifePoints());
+                        }
+                    }
+                }
+                break;
+            }
+        }
+        return party;
     }
 }

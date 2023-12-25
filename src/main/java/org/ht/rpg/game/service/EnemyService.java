@@ -31,6 +31,7 @@ public class EnemyService {
                     // messo per fare in modo di fare funzionare il refactor della classe scelta
                     // e consentire di vedere se nella lista target, vi è presente un nome euqivalente a return
                     nemico.setName("prova");
+                    nemico.setLifePoints(CasualitiesUtils.generaNumeroCasuale(100,200));
                     nemico.setVelocity(CasualitiesUtils.generaNumeroCasuale(100,400));
                     provaid++;
                 }
