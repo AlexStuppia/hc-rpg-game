@@ -28,6 +28,8 @@ public class AttackService {
                     attack.setPriorityLast(false);
                     attack.setEffect("a normal attack");
                     attack.setCanTargetAlly(false);
+                    attack.setCanTargetDeadAlly(false);
+                    attack.setCanTargetDeadEnemy(false);
                     attack.setCanAttackMultiTarget(false);
                     attack.setNumberOfTarget(1);
                     attack.setHittingAllEnemy(false);
@@ -45,6 +47,8 @@ public class AttackService {
                     attack.setPriorityLast(true);
                     attack.setEffect("you attack for the last, but you do a lot of damage");
                     attack.setCanTargetAlly(false);
+                    attack.setCanTargetDeadAlly(false);
+                    attack.setCanTargetDeadEnemy(false);
                     attack.setCanAttackMultiTarget(false);
                     attack.setNumberOfTarget(1);
                     attack.setHittingAllEnemy(false);
@@ -62,6 +66,8 @@ public class AttackService {
                     attack.setPriorityLast(false);
                     attack.setEffect("you attack for the first, but do a small amount of damage");
                     attack.setCanTargetAlly(false);
+                    attack.setCanTargetDeadAlly(false);
+                    attack.setCanTargetDeadEnemy(false);
                     attack.setCanAttackMultiTarget(false);
                     attack.setNumberOfTarget(1);
                     attack.setHittingAllEnemy(false);
@@ -80,6 +86,8 @@ public class AttackService {
                     attack.setPriorityLast(false);
                     attack.setEffect("you attack for the first, two target but do a small amount of damage");
                     attack.setCanTargetAlly(false);
+                    attack.setCanTargetDeadAlly(false);
+                    attack.setCanTargetDeadEnemy(false);
                     attack.setCanAttackMultiTarget(true);
                     attack.setNumberOfTarget(3);
                     attack.setHittingAllEnemy(false);

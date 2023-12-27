@@ -1,8 +1,6 @@
 package org.ht.rpg.game.service;
 
-import org.ht.rpg.game.entities.Fighter;
-import org.ht.rpg.game.entities.Party;
-import org.ht.rpg.game.entities.Choiche;
+import org.ht.rpg.game.entities.*;
 import org.ht.rpg.game.utils.CombatUtils;
 import org.ht.rpg.game.utils.Tuple2;
 
@@ -23,9 +21,11 @@ public class CombatService {
             isGameEndedIsPlayerWinner = combatUtils.checkWinnerParty(parties);
             if (isGameEndedIsPlayerWinner.getFirst()==false)
             {
+                showSituationAtTheBegginingOftheTurn(turns,parties);
                 List<Choiche> choicesOfAll = combatUtils.makeAllPlayerChooseAction(parties);
                 Map<Integer, Integer> velocityOrder = combatUtils.calculateVelocity(parties,choicesOfAll);
                 partiesAfterThisTurn = combatUtils.makeCicleForActions(partiesAfterThisTurn,velocityOrder,choicesOfAll);
+                turns++;
             } else if (isGameEndedIsPlayerWinner.getFirst()==true && isGameEndedIsPlayerWinner.getSecond()==false) {
                 //hai perso
                 System.out.println("hai perso");
@@ -35,13 +35,34 @@ public class CombatService {
                 System.out.println("hai vinto");
             }
         }
-
-
-
-
         for (int i = 0; i < parties.getEnemyList().size(); i++) {
             int element = parties.getEnemyList().get(i).getExp();
             System.out.println("IL NEMICO esperienza " + element);
+        }
+    }
+
+    private void showSituationAtTheBegginingOftheTurn(int turns, Party parties) {
+        if (turns == 0){
+            System.out.println("è iniziata la battaglia");
+        }
+        System.out.println("questo è il [" + (turns + 1 ) + "] turno");
+        System.out.println("i tuoi alleati sono");
+        for (Ally ally : parties.getAllyList()){
+            if (ally.isDead() == true) {
+                System.out.println(ally.getName() + " è collasato");
+            }
+            else {
+                System.out.println(ally.getName() + " PV : " + ally.getLifePoints());
+            }
+        }
+        System.out.println("i tuoi nemici sono");
+        for (Enemy enemy : parties.getEnemyList()){
+            if (enemy.isDead() == true) {
+                System.out.println(enemy.getName() + " è schiattato");
+            }
+            else {
+                System.out.println(enemy.getName() + " PV : " + enemy.getLifePoints());
+            }
         }
     }
 }

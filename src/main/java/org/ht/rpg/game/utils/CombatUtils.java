@@ -166,30 +166,60 @@ public class CombatUtils {
             Integer userInput = Integer.parseInt(tastiera.nextLine());
             if (userInput == 1) {
                 for (Ally ally : parties.getAllyList()) {
-                    targets.add(ally);
+                    if(ally.isDead() == false){
+                        targets.add(ally);
+                    }
                 }
                 for (Enemy enemy : parties.getEnemyList()) {
-                    targets.add(enemy);
+                    if(enemy.isDead() == false){
+                        targets.add(enemy);
+                    }
                 }
             } else {
                 System.out.println("go back to selection");
                 targets.add(fighterForReturnInCaseOfWrongInput);
             }
         } else if (chosenAttack.getHittingAllAlly()) {
-            for (Ally ally : parties.getAllyList()) {
-                targets.add(ally);
+            System.out.println("this attack will target all of your ally");
+            System.out.println("1 if you are sure, 0 if you want go back");
+            Integer userInput = Integer.parseInt(tastiera.nextLine());
+            if (userInput == 1) {
+                for (Ally ally : parties.getAllyList()) {
+                    if(ally.isDead() == false){
+                        targets.add(ally);
+                    }
+                }
+            } else {
+                System.out.println("go back to selection");
+                targets.add(fighterForReturnInCaseOfWrongInput);
             }
         } else if (chosenAttack.getHittingAllEnemy()) {
-            for (Enemy enemy : parties.getEnemyList()) {
-                targets.add(enemy);
+            System.out.println("this attack will target all of the enemy");
+            System.out.println("1 if you are sure, 0 if you want go back");
+            Integer userInput = Integer.parseInt(tastiera.nextLine());
+            if (userInput == 1) {
+                for (Enemy enemy : parties.getEnemyList()) {
+                    if(enemy.isDead() == false){
+                        targets.add(enemy);
+                    }
+                }
+            } else {
+                System.out.println("go back to selection");
+                targets.add(fighterForReturnInCaseOfWrongInput);
             }
         } else if (chosenAttack.getCanAttackMultiTarget()) {
             for (int i = 0; i < chosenAttack.getNumberOfTarget(); i++) {
                 System.out.println("select " + chosenAttack.getNumberOfTarget() + " target");
                 int contatore = 1;
-                List<Enemy> tempEnemyList = parties.getEnemyList();
+                List<Enemy> tempEnemyList = new ArrayList<>();
+                for (Enemy enemy : parties.getEnemyList())
+                {
+                    if (enemy.isDead()==false){
+                        tempEnemyList.add(enemy);
+                    }
+                }
                 for (Enemy enemy : tempEnemyList) {
-                    System.out.println(contatore + ": " + enemy.getId() + enemy.getLifePoints());
+                    System.out.println(contatore + ": " + enemy.getName() + " vita : " + enemy.getLifePoints());
                     contatore++;
                 }
                 Integer inputPlayer = Integer.parseInt(tastiera.nextLine());
@@ -203,9 +233,15 @@ public class CombatUtils {
             }
         } else if (chosenAttack.getCanAttackMultiTarget() == false && chosenAttack.getCanTargetAlly() == false) {
             int contatore = 1;
-            List<Enemy> tempEnemyList = parties.getEnemyList();
+            List<Enemy> tempEnemyList = new ArrayList<>();
+            for (Enemy enemy : parties.getEnemyList())
+            {
+                if (enemy.isDead()==false){
+                    tempEnemyList.add(enemy);
+                }
+            }
             for (Enemy enemy : tempEnemyList) {
-                System.out.println(contatore + ": " + enemy.getId() + enemy.getLifePoints());
+                System.out.println(contatore + ": " + enemy.getName() + " vita : " + enemy.getLifePoints());
                 contatore++;
             }
             Integer inputPlayer = Integer.parseInt(tastiera.nextLine());
@@ -218,9 +254,9 @@ public class CombatUtils {
         } else if (chosenAttack.getCanTargetDeadAlly() == true) {
             int contatore = 1;
             List<Ally> tempAllyList = parties.getDeadAllyList();
-            if (tempAllyList == null && tempAllyList.size() == 0)
+            if (tempAllyList == null || tempAllyList.size() == 0)
             {
-                System.out.println("nessun target disponibile");
+                System.out.println("no target available");
                 targets.add(fighterForReturnInCaseOfWrongInput);
             }
             else {
